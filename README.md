@@ -1,7 +1,7 @@
 # Get Health - CSCI 4620 – Human-Computer Interactions
 
-## Thinh Le
+## Team Members:
 
-## James Yang
-
-## Abdul Rahim Mohsin
+-   Thinh Le
+-   James Yang
+-   Abdul Rahim Mohsin
