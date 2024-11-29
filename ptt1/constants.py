@@ -1,0 +1,2 @@
+APP_NAME = 'GET HEALTH'
+APP_LOGO = 'logo.png'

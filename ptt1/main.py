@@ -2,6 +2,7 @@ import os
 import sys
 
 from app_style import STYLE_SHEET
+from main_window import MainWindow
 from PyQt5.QtWidgets import QApplication
 
 if __name__ == '__main__':
@@ -12,6 +13,14 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     # configure the Qt app window
     app.setStyleSheet(STYLE_SHEET)
+    # get resource path
+    try:
+        curr_dir = sys._MEIPASS
+    except:
+        curr_dir = os.getcwd()
+    # create Qt window
+    window = MainWindow(curr_dir)
+    window.showMaximized()
     # loading should be done before closing the splash screen
     if getattr(sys, 'frozen', False): pyi_splash.close()
     # run the main Qt loop
