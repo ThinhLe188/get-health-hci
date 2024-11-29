@@ -7,7 +7,7 @@ from PyQt5.QtWidgets import QApplication
 
 if __name__ == '__main__':
     # for splash screen
-    if getattr(sys, 'frozen', False): import pyi_splash
+    if getattr(sys, 'frozen', False): import pyi_splash # type: ignore
     # create the Qt app
     os.environ["QT_ENABLE_HIGHDPI_SCALING"] = '0'
     app = QApplication(sys.argv)
