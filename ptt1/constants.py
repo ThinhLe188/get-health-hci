@@ -4,3 +4,5 @@ APP_LOGO = 'resources/logo.png'
 # sample data
 USER_PFP = 'resources/pfp.png'
 USER_NAME = '  Alex Young'
+USER_ACCOUNT = 'alex'
+USER_PASSWORD = 'alex123'
