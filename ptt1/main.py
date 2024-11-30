@@ -3,6 +3,7 @@ import sys
 
 from app_style import STYLE_SHEET
 from main_window import MainWindow
+from PyQt5.QtGui import QFont
 from PyQt5.QtWidgets import QApplication
 
 if __name__ == '__main__':
@@ -12,6 +13,8 @@ if __name__ == '__main__':
     os.environ["QT_ENABLE_HIGHDPI_SCALING"] = '0'
     app = QApplication(sys.argv)
     # configure the Qt app window
+    app.setStyle('Fusion')
+    app.setFont(QFont('Open Sans', 12))
     app.setStyleSheet(STYLE_SHEET)
     # get resource path
     try:
