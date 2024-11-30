@@ -2,21 +2,50 @@ import os
 
 import constants as const
 from button_widget import ButtonWidget
+from pages.home_page import HomePage
+from pages.mental_page import MentalPage
+from pages.news_page import NewsPage
+from pages.physical_page import PhysicalPage
 from PyQt5.QtCore import Qt, pyqtSlot
-from PyQt5.QtWidgets import (QHBoxLayout, QLabel, QMessageBox, QVBoxLayout,
-                             QWidget)
+from PyQt5.QtWidgets import (QHBoxLayout, QMessageBox, QScrollArea,
+                             QVBoxLayout, QWidget)
 
 
 class CentralWidget(QWidget):
     def __init__(self, curr_dir: str):
+        """Initialize central widget
+
+        Args:
+            curr_dir (str): Current working directory
+        """
         super().__init__()
         self.curr_dir = curr_dir
         layout = QVBoxLayout()
         layout.setContentsMargins(0, 0, 0, 0)
+        layout.setSpacing(0)
         self.setLayout(layout)
+        # create content section
+        self._current_page = 0
+        self._list_pages: list[QScrollArea] = [QScrollArea(), QScrollArea(), 
+                                               QScrollArea(), QScrollArea()]
+        self._widget_home = HomePage()
+        self._widget_news = NewsPage()
+        self._widget_mental = MentalPage()
+        self._widget_physical = PhysicalPage()
+        self._list_pages[0].setWidget(self._widget_home)
+        self._list_pages[1].setWidget(self._widget_news)
+        self._list_pages[2].setWidget(self._widget_mental)
+        self._list_pages[3].setWidget(self._widget_physical)
         # create nav bar section
         layout.addWidget(self._create_nav_bar())
-        layout.addStretch()
+        # add content section
+        for page in self._list_pages:
+            print(page)
+            layout.addWidget(page)
+            page.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+            page.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
+            page.hide() # hide all pages
+        self._list_pages[0].show() # only show Home page on start
 
 
     def _create_nav_bar(self):
@@ -28,30 +57,43 @@ class CentralWidget(QWidget):
         layout_nav_bar.addWidget(self._create_logo_widget())
         layout_nav_bar.addStretch()
         # create menu items
+        widget_home = ButtonWidget(text='HOME', 
+                                   text_objectName='label_card', 
+                                   objectName='widget_card', 
+                                   width=160)
+        widget_home.layout().setAlignment(Qt.AlignmentFlag.AlignCenter)
         widget_news = ButtonWidget(text='NEWS', 
                                    text_objectName='label_card', 
                                    objectName='widget_card', 
                                    width=160)
         widget_news.layout().setAlignment(Qt.AlignmentFlag.AlignCenter)
-        layout_nav_bar.addWidget(widget_news)
         widget_mental = ButtonWidget(text='MENTAL HEALTH', 
                                    text_objectName='label_card', 
                                    objectName='widget_card', 
                                    width=160)
         widget_mental.layout().setAlignment(Qt.AlignmentFlag.AlignCenter)
-        layout_nav_bar.addWidget(widget_mental)
         widget_physical = ButtonWidget(text='PHYSICAL HEALTH', 
                                    text_objectName='label_card', 
                                    objectName='widget_card', 
                                    width=160)
         widget_physical.layout().setAlignment(Qt.AlignmentFlag.AlignCenter)
-        layout_nav_bar.addWidget(widget_physical)
         widget_about = ButtonWidget(text='ABOUT US', 
                                    text_objectName='label_card', 
                                    objectName='widget_card', 
                                    width=160)
         widget_about.layout().setAlignment(Qt.AlignmentFlag.AlignCenter)
+        # add menu items
+        layout_nav_bar.addWidget(widget_home)
+        layout_nav_bar.addWidget(widget_news)
+        layout_nav_bar.addWidget(widget_mental)
+        layout_nav_bar.addWidget(widget_physical)
         layout_nav_bar.addWidget(widget_about)
+        # connect signals
+        widget_home.clicked.connect(lambda: self._switch_page(0))
+        widget_news.clicked.connect(lambda: self._switch_page(1))
+        widget_mental.clicked.connect(lambda: self._switch_page(2))
+        widget_physical.clicked.connect(lambda: self._switch_page(3))
+        widget_about.clicked.connect(self._handle_about_page)
         # create profile widget
         layout_nav_bar.addStretch()
         layout_nav_bar.addWidget(self._create_profile_widget(), alignment=Qt.AlignmentFlag.AlignRight)
@@ -65,7 +107,7 @@ class CentralWidget(QWidget):
         widget_title.layout().setSpacing(0)
         widget_title.layout().setContentsMargins(0, 0, 0, 0)
         # connect signal
-        widget_title.clicked.connect(self._handle_home_page)
+        widget_title.clicked.connect(lambda: self._switch_page(0))
         return widget_title
 
 
@@ -85,11 +127,16 @@ class CentralWidget(QWidget):
 # Signal handlers
 ##############################################################################
     @pyqtSlot()
-    def _handle_home_page(self):
-        # TODO
-        pass
+    def _switch_page(self, next_page: int):
+        self._list_pages[self._current_page].hide()
+        self._list_pages[next_page].show()
+        self._current_page = next_page
+
+    @pyqtSlot()
+    def _handle_about_page(self):
+        QMessageBox.information(self, 'GET HEALTH Prototype', 'Apologies! The About Us page are not yet ready in this prototype.')
 
 
     @pyqtSlot()
     def _handle_profile_page(self):
-        QMessageBox.information(self, 'GET HEALTH Prototype', 'Apologies! The user authentication and profile features are not yet ready in this prototype.')
+        QMessageBox.information(self, 'GET HEALTH Prototype', 'Apologies! The user authentication and Profile page are not yet ready in this prototype.')
