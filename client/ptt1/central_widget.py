@@ -157,12 +157,14 @@ class CentralWidget(QWidget):
         # Account input
         account_label = QLabel("Account:", objectName='label_card')
         account_input = QLineEdit()
+        account_input.setText("alex")
         layout.addWidget(account_label)
         layout.addWidget(account_input)
 
         # Password input
         password_label = QLabel("Password:", objectName='label_card')
         password_input = QLineEdit()
+        password_input.setText("alex123") 
         password_input.setEchoMode(QLineEdit.EchoMode.Password)
         layout.addWidget(password_label)
         layout.addWidget(password_input)
