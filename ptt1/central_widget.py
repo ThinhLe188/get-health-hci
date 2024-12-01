@@ -56,46 +56,40 @@ class CentralWidget(QWidget):
         layout_nav_bar.addWidget(self._create_logo_widget())
         layout_nav_bar.addStretch()
         # create menu items
-        widget_home = ButtonWidget(text='HOME', 
+        self._widget_news = ButtonWidget(text='NEWS', 
                                    text_objectName='label_card', 
                                    objectName='widget_card', 
                                    width=160)
-        widget_home.layout().setAlignment(Qt.AlignmentFlag.AlignCenter)
-        widget_news = ButtonWidget(text='NEWS', 
+        self._widget_news.layout().setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self._widget_mental = ButtonWidget(text='MENTAL HEALTH', 
                                    text_objectName='label_card', 
                                    objectName='widget_card', 
                                    width=160)
-        widget_news.layout().setAlignment(Qt.AlignmentFlag.AlignCenter)
-        widget_mental = ButtonWidget(text='MENTAL HEALTH', 
+        self._widget_mental.layout().setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self._widget_physical = ButtonWidget(text='PHYSICAL HEALTH', 
                                    text_objectName='label_card', 
                                    objectName='widget_card', 
                                    width=160)
-        widget_mental.layout().setAlignment(Qt.AlignmentFlag.AlignCenter)
-        widget_physical = ButtonWidget(text='PHYSICAL HEALTH', 
-                                   text_objectName='label_card', 
-                                   objectName='widget_card', 
-                                   width=160)
-        widget_physical.layout().setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self._widget_physical.layout().setAlignment(Qt.AlignmentFlag.AlignCenter)
         widget_about = ButtonWidget(text='ABOUT US', 
                                    text_objectName='label_card', 
                                    objectName='widget_card', 
                                    width=160)
         widget_about.layout().setAlignment(Qt.AlignmentFlag.AlignCenter)
         # add menu items
-        layout_nav_bar.addWidget(widget_home)
-        layout_nav_bar.addWidget(widget_news)
-        layout_nav_bar.addWidget(widget_mental)
-        layout_nav_bar.addWidget(widget_physical)
+        layout_nav_bar.addWidget(self._widget_news)
+        layout_nav_bar.addWidget(self._widget_mental)
+        layout_nav_bar.addWidget(self._widget_physical)
         layout_nav_bar.addWidget(widget_about)
         # connect signals
-        widget_home.clicked.connect(lambda: self._switch_page(0))
-        widget_news.clicked.connect(lambda: self._switch_page(1))
-        widget_mental.clicked.connect(lambda: self._switch_page(2))
-        widget_physical.clicked.connect(lambda: self._switch_page(3))
+        self._widget_news.clicked.connect(lambda: self._switch_page(1))
+        self._widget_mental.clicked.connect(lambda: self._switch_page(2))
+        self._widget_physical.clicked.connect(lambda: self._switch_page(3))
         widget_about.clicked.connect(self._handle_about_page)
         # create profile widget
         layout_nav_bar.addStretch()
         layout_nav_bar.addWidget(self._create_login_widget(), alignment=Qt.AlignmentFlag.AlignRight)
+        layout_nav_bar.addWidget(self._create_profile_widget(), alignment=Qt.AlignmentFlag.AlignRight)
         return widget_nav_bar
 
 
@@ -111,26 +105,26 @@ class CentralWidget(QWidget):
 
 
     def _create_login_widget(self):
-        login_button = ButtonWidget(text='LOGIN', 
+        self._widget_login = ButtonWidget(text='LOGIN', 
                                     text_objectName='label_card', 
                                     objectName='widget_card', 
                                     width=160)
-        login_button.layout().setAlignment(Qt.AlignmentFlag.AlignCenter)
-        login_button.clicked.connect(self._show_login_dialog)
-
-        return login_button
+        self._widget_login.layout().setAlignment(Qt.AlignmentFlag.AlignCenter)
+        self._widget_login.clicked.connect(self._show_login_dialog)
+        return self._widget_login
 
 
     def _create_profile_widget(self):
-        widget_profile = ButtonWidget(text=const.USER_NAME, 
+        self._widget_profile = ButtonWidget(text=const.USER_NAME, 
                                       text_objectName='label_card', 
                                       objectName='widget_card', 
-                                      width=180,
+                                      width=160,
                                       icon=os.path.join(self.curr_dir, const.USER_PFP), 
                                       size=(30, 30))
         # connect signal
-        widget_profile.clicked.connect(self._handle_profile_page)
-        return widget_profile
+        self._widget_profile.clicked.connect(self._handle_profile_page)
+        self._widget_profile.hide()
+        return self._widget_profile
     
 
 ##############################################################################
@@ -191,13 +185,7 @@ class CentralWidget(QWidget):
             QMessageBox.information(self, "Login Successful", "Welcome, Alex!")
             dialog.accept()
             # Remove the login button and add the profile widget
-            widget_nav_bar = self.findChild(QWidget, 'widget_nav') # Find the widget first
-            if widget_nav_bar:
-                layout_nav_bar = widget_nav_bar.layout() # Get the layout from the widget
-                login_button = self.findChild(ButtonWidget, 'login_button')
-                if login_button:
-                    layout_nav_bar.removeWidget(login_button)
-                    login_button.deleteLater()
-                layout_nav_bar.addWidget(self._create_profile_widget(), alignment=Qt.AlignmentFlag.AlignRight)
+            self._widget_login.hide()
+            self._widget_profile.show()
         else:
             QMessageBox.warning(self, "Login Failed", "Invalid account or password.")
