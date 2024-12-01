@@ -43,6 +43,8 @@ class CentralWidget(QWidget):
             layout.addWidget(page)
             page.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
             page.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
+            page.setWidgetResizable(True)  # Add this line
+
             page.hide() # hide all pages
         self._list_pages[0].show() # only show Home page on start
 
