@@ -40,7 +40,6 @@ class CentralWidget(QWidget):
         layout.addWidget(self._create_nav_bar())
         # add content section
         for page in self._list_pages:
-            print(page)
             layout.addWidget(page)
             page.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
             page.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAsNeeded)
@@ -109,59 +108,17 @@ class CentralWidget(QWidget):
         # connect signal
         widget_title.clicked.connect(lambda: self._switch_page(0))
         return widget_title
-    
+
+
     def _create_login_widget(self):
         login_button = ButtonWidget(text='LOGIN', 
                                     text_objectName='label_card', 
-                                    objectName='login_button', 
+                                    objectName='widget_card', 
                                     width=160)
         login_button.layout().setAlignment(Qt.AlignmentFlag.AlignCenter)
         login_button.clicked.connect(self._show_login_dialog)
 
         return login_button
-    
-    def _show_login_dialog(self):
-        dialog = QDialog(self)
-        dialog.setWindowTitle("Login")
-        layout = QVBoxLayout(dialog)
-
-        # Account input
-        account_label = QLabel("Account:")
-        account_input = QLineEdit()
-        layout.addWidget(account_label)
-        layout.addWidget(account_input)
-
-        # Password input
-        password_label = QLabel("Password:")
-        password_input = QLineEdit()
-        password_input.setEchoMode(QLineEdit.EchoMode.Password)
-        layout.addWidget(password_label)
-        layout.addWidget(password_input)
-
-        # Login button
-        login_button = QPushButton("Login")
-        login_button.clicked.connect(lambda: self._handle_login(account_input.text(), password_input.text(), dialog))
-        layout.addWidget(login_button)
-
-        dialog.exec_()
-
-    def _handle_login(self, account, password, dialog):
-        # Handle login logic here
-        if account == const.USER_ACCOUNT and password == const.USER_PASSWORD:
-            QMessageBox.information(self, "Login Successful", "Welcome, Alex!")
-            dialog.accept()
-            # Remove the login button and add the profile widget
-            widget_nav_bar = self.findChild(QWidget, 'widget_nav')  # Find the widget first
-            if widget_nav_bar:
-                layout_nav_bar = widget_nav_bar.layout()  # Get the layout from the widget
-                login_button = self.findChild(ButtonWidget, 'login_button')
-                if login_button:
-                    layout_nav_bar.removeWidget(login_button)
-                    login_button.deleteLater()
-                layout_nav_bar.addWidget(self._create_profile_widget(), alignment=Qt.AlignmentFlag.AlignRight)
-        else:
-            QMessageBox.warning(self, "Login Failed", "Invalid account or password.")
-
 
 
     def _create_profile_widget(self):
@@ -192,4 +149,55 @@ class CentralWidget(QWidget):
 
     @pyqtSlot()
     def _handle_profile_page(self):
-        QMessageBox.information(self, 'GET HEALTH Prototype', 'Apologies! The user authentication and Profile page are not yet ready in this prototype.')
+        QMessageBox.information(self, 'GET HEALTH Prototype', 'Apologies! The Profile page are not yet ready in this prototype.')
+
+
+    @pyqtSlot()
+    def _show_login_dialog(self):
+        dialog = QDialog(self)
+        dialog.setWindowTitle("Login")
+        dialog.setFixedHeight(170)
+        dialog.setFixedWidth(250)
+        layout = QVBoxLayout(dialog)
+
+        # Account input
+        account_label = QLabel("Account:", objectName='label_card')
+        account_input = QLineEdit()
+        layout.addWidget(account_label)
+        layout.addWidget(account_input)
+
+        # Password input
+        password_label = QLabel("Password:", objectName='label_card')
+        password_input = QLineEdit()
+        password_input.setEchoMode(QLineEdit.EchoMode.Password)
+        layout.addWidget(password_label)
+        layout.addWidget(password_input)
+
+        # Login button
+        login_button = QPushButton("Login", objectName='btn_bold')
+        login_button.setFixedWidth(120)
+        login_button.setFixedHeight(30)
+        login_button.clicked.connect(lambda: self._handle_login(account_input.text(), password_input.text(), dialog))
+        layout.addStretch()
+        layout.addWidget(login_button, alignment=Qt.AlignmentFlag.AlignCenter)
+
+        dialog.exec_()
+
+
+    @pyqtSlot()
+    def _handle_login(self, account, password, dialog):
+        # Handle login logic here
+        if account == const.USER_ACCOUNT and password == const.USER_PASSWORD:
+            QMessageBox.information(self, "Login Successful", "Welcome, Alex!")
+            dialog.accept()
+            # Remove the login button and add the profile widget
+            widget_nav_bar = self.findChild(QWidget, 'widget_nav') # Find the widget first
+            if widget_nav_bar:
+                layout_nav_bar = widget_nav_bar.layout() # Get the layout from the widget
+                login_button = self.findChild(ButtonWidget, 'login_button')
+                if login_button:
+                    layout_nav_bar.removeWidget(login_button)
+                    login_button.deleteLater()
+                layout_nav_bar.addWidget(self._create_profile_widget(), alignment=Qt.AlignmentFlag.AlignRight)
+        else:
+            QMessageBox.warning(self, "Login Failed", "Invalid account or password.")

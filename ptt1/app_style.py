@@ -21,4 +21,9 @@ STYLE_SHEET = """
         background-color: rgb(204, 204, 0);
         border: 1px solid black;
     }
+
+    QPushButton#btn_bold {
+        font-weight: bold;
+        font-size: 12px;
+    }
 """

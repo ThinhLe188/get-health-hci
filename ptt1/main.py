@@ -14,7 +14,6 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     # configure the Qt app window
     app.setStyle('Fusion')
-    app.setFont(QFont('Open Sans', 12))
     app.setStyleSheet(STYLE_SHEET)
     # get resource path
     try:
