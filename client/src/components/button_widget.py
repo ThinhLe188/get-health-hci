@@ -6,23 +6,29 @@ from PyQt5.QtWidgets import QHBoxLayout, QLabel, QStyle, QStyleOption, QWidget
 class ButtonWidget(QWidget):
     clicked = pyqtSignal()
 
-    def __init__(self, objectName: str = None, width: int = None, text: str = None, text_objectName: str = None, icon: str = None, size: tuple = None):
+    def __init__(self, text: str = None, icon: str = None, size: tuple = None, is_title: bool = False):
         """Initialize button widget
 
         Args:
-            objectName (str, optional): Object ID tag for styling. Defaults to None.
-            width (int, optional): Widget's width. Defaults to None.
             text (str, optional): Display text string. Defaults to None.
-            text_objectName (str, optional): Object ID tag for text styling. Defaults to None.
             icon (str, optional): Icon path. Defaults to None.
             size (tuple, optional): Icon size. Defaults to None.
+            is_title (bool, optional): If the widget is title widget. Defaults to None.
         """
         super().__init__()
-        self.setObjectName(objectName)
-        if width:
-            self.setFixedWidth(width)
         layout = QHBoxLayout()
+        layout.setAlignment(Qt.AlignmentFlag.AlignCenter)
         self.setLayout(layout)
+        if is_title:
+            widget_style = ''
+            text_style = 'label_title'
+            layout.setSpacing(0)
+            layout.setContentsMargins(0, 0, 0, 0)
+        else:
+            widget_style = 'widget_card'
+            text_style = 'label_card'
+        self.setObjectName(widget_style)
+        self.setFixedWidth(160)
         # add icon
         if icon:
             label_icon = QLabel()
@@ -32,10 +38,10 @@ class ButtonWidget(QWidget):
                 label_icon.setPixmap(pixmap.scaled(label_icon.size(), Qt.KeepAspectRatio, Qt.SmoothTransformation))
             else:
                 label_icon.setPixmap(pixmap)
-            layout.addWidget(label_icon)
+            layout.addWidget(label_icon)       
         # add title text
         if text:
-            layout.addWidget(QLabel(text, objectName=text_objectName))
+            layout.addWidget(QLabel(text, objectName=text_style))
 
 
     # override the mousePressEvent to emit the custom signal

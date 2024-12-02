@@ -1,4 +1,4 @@
-import constants as const
+import common.constants as const
 from PyQt5.QtCore import Qt, pyqtSlot
 from PyQt5.QtWidgets import (QHBoxLayout, QLabel, QMessageBox, QScrollArea,
                              QVBoxLayout, QWidget)
