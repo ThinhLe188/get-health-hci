@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetHealth</title>
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/index.css">
+</head>
+<body>
+    <section class="hero is-fullheight">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column is-5-tablet is-4-desktop">
+                        <div class="box">
+                            <figure class="image is-128x128 mx-auto mb-5">
+                                <img src="assets/images/logo.png" alt="website Logo">
+                            </figure>
+                            
+                            <h1 class="title has-text-centered mb-5">GetHealth Employee Portal</h1>
+                            <!-- Add this right after the h1 title and before the form -->
+                            <div style="height:88.8px;">
+                                <div id="errorMessage" class="notification is-danger is-light" style="display: none;">
+                                    <span class="icon">
+                                        <i class="fas fa-exclamation-circle"></i>
+                                    </span>
+                                    <span>Invalid username or password. Please try again.</span>
+                                </div>
+                            </div>
+                            <form id="loginForm">
+                                <div class="field">
+                                    <label class="label">Username</label>
+                                    <div class="control has-icons-left">
+                                        <input class="input" type="text" id="username" placeholder="Enter username" required>
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-user"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <label class="label">Password</label>
+                                    <div class="control has-icons-left">
+                                        <input class="input" type="password" id="password" placeholder="Enter password" required>
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-lock"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <div class="control">
+                                        <label class="checkbox">
+                                            <input type="checkbox">
+                                            Remember me
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="field">
+                                    <button class="button is-primary is-fullwidth" type="submit">
+                                        <span class="icon">
+                                            <i class="fas fa-sign-in-alt"></i>
+                                        </span>
+                                        <span>Login</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/index.js"></script>
+</body>
+</html>

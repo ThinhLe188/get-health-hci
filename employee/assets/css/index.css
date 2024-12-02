@@ -1,0 +1,28 @@
+/* We only need minimal custom CSS since Bulma handles most styling */
+.hero.is-fullheight {
+    background-color: #f0f2f5;
+}
+
+.box {
+    margin-top: -60px; /* Adjust the vertical position of the login box */
+}
+
+.image.is-128x128 {
+    margin-top: -64px; /* Pull the logo up slightly */
+}
+
+/* Optional: Add some animation to the login box */
+.box {
+    animation: float-in 0.5s ease-out;
+}
+
+@keyframes float-in {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
