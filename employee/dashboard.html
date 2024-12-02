@@ -14,6 +14,9 @@
 <body>
     <nav class="navbar is-light" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
+            <div class="navbar-item">
+                <img src="assets/images/logo.png" alt="Logo" style="max-height: 40px;">
+            </div>
             <a class="navbar-item" href="dashboard.html">
                 <strong>Dashboard</strong>
             </a>
@@ -35,14 +38,313 @@
         </div>
     </nav>
 
-    <section class="section">
+    <section class="section" style="margin-top: -3rem;">
         <div class="container">
-            <h1 class="title">Welcome to Dashboard</h1>
             <div class="columns">
-                <div class="column">
+                <div class="column is-8">
+                    <!-- Appointments List -->
                     <div class="box">
-                        <h2 class="title is-4">Statistics</h2>
-                        <p>Your dashboard content goes here</p>
+                        <h1 class="title">Calendar</h1>
+
+                        <!-- Monthly Calendar -->
+                        <div class="box mb-5">
+                            <div class="level mb-4">
+                                <div class="level-left">
+                                    <h2 class="title is-4 mb-0">March 2024</h2>
+                                </div>
+                                <div class="level-right">
+                                    <div class="buttons">
+                                        <button class="button is-small" id="prevMonth">
+                                            <span class="icon">
+                                                <i class="fas fa-chevron-left"></i>
+                                            </span>
+                                        </button>
+                                        <button class="button is-small" id="nextMonth">
+                                            <span class="icon">
+                                                <i class="fas fa-chevron-right"></i>
+                                            </span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="calendar">
+                                <!-- Calendar header -->
+                                <div class="calendar-header">
+                                    <div class="has-text-weight-bold">Sun</div>
+                                    <div class="has-text-weight-bold">Mon</div>
+                                    <div class="has-text-weight-bold">Tue</div>
+                                    <div class="has-text-weight-bold">Wed</div>
+                                    <div class="has-text-weight-bold">Thu</div>
+                                    <div class="has-text-weight-bold">Fri</div>
+                                    <div class="has-text-weight-bold">Sat</div>
+                                </div>
+
+                                <!-- Calendar days -->
+                                <div class="calendar-body">
+                                    <!-- Week 1 -->
+                                    <div class="has-text-grey-light">25</div>
+                                    <div class="has-text-grey-light">26</div>
+                                    <div class="has-text-grey-light">27</div>
+                                    <div class="has-text-grey-light">28</div>
+                                    <div class="has-text-grey-light">29</div>
+                                    <div>1</div>
+                                    <div>2</div>
+
+                                    <!-- Week 2 -->
+                                    <div>3</div>
+                                    <div>4</div>
+                                    <div class="has-background-primary-light" title="2 appointments">5</div>
+                                    <div>6</div>
+                                    <div class="has-background-primary-light" title="1 appointment">7</div>
+                                    <div>8</div>
+                                    <div>9</div>
+
+                                    <!-- Week 3 -->
+                                    <div>10</div>
+                                    <div class="has-background-primary-light" title="3 appointments">11</div>
+                                    <div>12</div>
+                                    <div>13</div>
+                                    <div>14</div>
+                                    <div>15</div>
+                                    <div>16</div>
+
+                                    <!-- Week 4 -->
+                                    <div>17</div>
+                                    <div>18</div>
+                                    <div class="has-background-primary-light" title="1 appointment">19</div>
+                                    <div>20</div>
+                                    <div>21</div>
+                                    <div>22</div>
+                                    <div>23</div>
+
+                                    <!-- Week 5 -->
+                                    <div>24</div>
+                                    <div>25</div>
+                                    <div>26</div>
+                                    <div class="has-background-primary-light" title="2 appointments">27</div>
+                                    <div>28</div>
+                                    <div>29</div>
+                                    <div>30</div>
+
+                                    <!-- Week 6 -->
+                                    <div>31</div>
+                                    <div class="has-text-grey-light">1</div>
+                                    <div class="has-text-grey-light">2</div>
+                                    <div class="has-text-grey-light">3</div>
+                                    <div class="has-text-grey-light">4</div>
+                                    <div class="has-text-grey-light">5</div>
+                                    <div class="has-text-grey-light">6</div>
+                                </div>
+                            </div>
+                        </div>
+                        <h2 class="title is-4">Today's Appointments</h2>
+                        
+                        <!-- Tabs -->
+                        <div class="tabs is-boxed mb-4">
+                            <ul>
+                                <li class="is-active">
+                                    <a>
+                                        <span class="icon is-small"><i class="fas fa-calendar-day"></i></span>
+                                        <span>Upcoming</span>
+                                        <span class="tag is-success is-rounded ml-2">4</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="icon is-small"><i class="fas fa-check-circle"></i></span>
+                                        <span>Completed</span>
+                                        <span class="tag is-info is-rounded ml-2">2</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a>
+                                        <span class="icon is-small"><i class="fas fa-clock"></i></span>
+                                        <span>Pending</span>
+                                        <span class="tag is-warning is-rounded ml-2">2</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Tab Contents -->
+                        <div class="appointments">
+                            <!-- Upcoming Appointments Tab (Initially Visible) -->
+                            <div class="tab-content" id="upcomingTab">
+                                <!-- Confirmed Appointment -->
+                                <div class="card mb-4">
+                                    <div class="card-content">
+                                        <div class="level">
+                                            <div class="level-left">
+                                                <div class="level-item">
+                                                    <span class="icon has-text-info">
+                                                        <i class="fas fa-clock"></i>
+                                                    </span>
+                                                    <strong class="ml-2">9:00 AM</strong>
+                                                </div>
+                                            </div>
+                                            <div class="level-right">
+                                                <span class="tag is-success">Confirmed</span>
+                                            </div>
+                                        </div>
+                                        <p class="mt-2"><strong>Patient:</strong> John Doe</p>
+                                        <p><strong>Service:</strong> Regular Checkup</p>
+                                        <p><strong>Duration:</strong> 30 minutes</p>
+                                    </div>
+                                </div>
+
+                                <!-- Second Confirmed Appointment -->
+                                <div class="card mb-4">
+                                    <div class="card-content">
+                                        <div class="level">
+                                            <div class="level-left">
+                                                <div class="level-item">
+                                                    <span class="icon has-text-info">
+                                                        <i class="fas fa-clock"></i>
+                                                    </span>
+                                                    <strong class="ml-2">10:30 AM</strong>
+                                                </div>
+                                            </div>
+                                            <div class="level-right">
+                                                <span class="tag is-success">Confirmed</span>
+                                            </div>
+                                        </div>
+                                        <p class="mt-2"><strong>Patient:</strong> Emma Wilson</p>
+                                        <p><strong>Service:</strong> Teeth Whitening</p>
+                                        <p><strong>Duration:</strong> 45 minutes</p>
+                                    </div>
+                                </div>
+
+                                <!-- Third Confirmed Appointment -->
+                                <div class="card mb-4">
+                                    <div class="card-content">
+                                        <div class="level">
+                                            <div class="level-left">
+                                                <div class="level-item">
+                                                    <span class="icon has-text-info">
+                                                        <i class="fas fa-clock"></i>
+                                                    </span>
+                                                    <strong class="ml-2">2:00 PM</strong>
+                                                </div>
+                                            </div>
+                                            <div class="level-right">
+                                                <span class="tag is-success">Confirmed</span>
+                                            </div>
+                                        </div>
+                                        <p class="mt-2"><strong>Patient:</strong> Michael Brown</p>
+                                        <p><strong>Service:</strong> Root Canal</p>
+                                        <p><strong>Duration:</strong> 1 hour</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Completed Appointments Tab (Initially Hidden) -->
+                            <div class="tab-content is-hidden" id="completedTab">
+                                <!-- Completed Appointment -->
+                                <div class="card mb-4">
+                                    <div class="card-content">
+                                        <div class="level">
+                                            <div class="level-left">
+                                                <div class="level-item">
+                                                    <span class="icon has-text-info">
+                                                        <i class="fas fa-clock"></i>
+                                                    </span>
+                                                    <strong class="ml-2">8:00 AM</strong>
+                                                </div>
+                                            </div>
+                                            <div class="level-right">
+                                                <span class="tag is-info">Completed</span>
+                                            </div>
+                                        </div>
+                                        <p class="mt-2"><strong>Patient:</strong> Alice Johnson</p>
+                                        <p><strong>Service:</strong> Teeth Cleaning</p>
+                                        <p><strong>Duration:</strong> 45 minutes</p>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-4">
+                                    <div class="card-content">
+                                        <div class="level">
+                                            <div class="level-left">
+                                                <div class="level-item">
+                                                    <span class="icon has-text-info">
+                                                        <i class="fas fa-clock"></i>
+                                                    </span>
+                                                    <strong class="ml-2">8:00 AM</strong>
+                                                </div>
+                                            </div>
+                                            <div class="level-right">
+                                                <span class="tag is-info">Completed</span>
+                                            </div>
+                                        </div>
+                                        <p class="mt-2"><strong>Patient:</strong> Alice Johnson</p>
+                                        <p><strong>Service:</strong> Teeth Cleaning</p>
+                                        <p><strong>Duration:</strong> 45 minutes</p>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+                            <!-- Pending Appointments Tab (Initially Hidden) -->
+                            <div class="tab-content is-hidden" id="pendingTab">
+                                <!-- Pending Appointment -->
+                                <div class="card mb-4">
+                                    <div class="card-content">
+                                        <div class="level">
+                                            <div class="level-left">
+                                                <div class="level-item">
+                                                    <span class="icon has-text-info">
+                                                        <i class="fas fa-clock"></i>
+                                                    </span>
+                                                    <strong class="ml-2">11:30 AM</strong>
+                                                </div>
+                                            </div>
+                                            <div class="level-right">
+                                                <span class="tag is-warning">Pending</span>
+                                            </div>
+                                        </div>
+                                        <p class="mt-2"><strong>Patient:</strong> Jane Smith</p>
+                                        <p><strong>Service:</strong> Dental Cleaning</p>
+                                        <p><strong>Duration:</strong> 45 minutes</p>
+                                    </div>
+                                </div>
+
+                                <div class="card mb-4">
+                                    <div class="card-content">
+                                        <div class="level">
+                                            <div class="level-left">
+                                                <div class="level-item">
+                                                    <span class="icon has-text-info">
+                                                        <i class="fas fa-clock"></i>
+                                                    </span>
+                                                    <strong class="ml-2">11:30 AM</strong>
+                                                </div>
+                                            </div>
+                                            <div class="level-right">
+                                                <span class="tag is-warning">Pending</span>
+                                            </div>
+                                        </div>
+                                        <p class="mt-2"><strong>Patient:</strong> Jane Smith</p>
+                                        <p><strong>Service:</strong> Dental Cleaning</p>
+                                        <p><strong>Duration:</strong> 45 minutes</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="column is-4">
+                    <!-- Statistics Box -->
+                    <div class="box">
+                        <h2 class="title is-4">Today's Summary</h2>
+                        <div class="content">
+                            <p><strong>Total Appointments:</strong> 3</p>
+                            <p><strong>Confirmed:</strong> 2</p>
+                            <p><strong>Pending:</strong> 1</p>
+                            <hr>
+                        </div>
                     </div>
                 </div>
             </div>

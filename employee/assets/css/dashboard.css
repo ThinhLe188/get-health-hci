@@ -2,3 +2,92 @@
 .navbar {
     margin-bottom: 1rem;
 }
+
+/* Navbar styles */
+.navbar-brand img {
+    max-height: 40px !important;
+}
+
+.calendar {
+    width: 100%;
+}
+
+.calendar-header {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #dbdbdb;
+}
+
+.calendar-body {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+}
+
+.calendar-body div {
+    padding: 15px;
+    border: 1px solid #dbdbdb;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.calendar-body div:hover {
+    background-color: #a2a2a2;
+}
+
+.calendar-body div.is-selected {
+    background-color: #485fc7;
+    color: white;
+    font-weight: bold;
+}
+
+.calendar-body div.has-background-primary-light {
+    position: relative;
+}
+
+.calendar-body div.has-background-primary-light::after {
+    content: '•';
+    position: absolute;
+    bottom: 2px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #485fc7;
+}
+
+.tabs li {
+    cursor: pointer;
+}
+
+.tab-content {
+    transition: all 0.3s ease;
+}
+
+.tab-content.is-hidden {
+    display: none;
+}
+
+.tag.is-rounded {
+    border-radius: 9999px;
+}
+
+.card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: 1px solid #dddddd;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    background-color: #fafafa;
+}
+
+.card .card-content {
+    transition: all 0.3s ease;
+}
+
+.card:hover .card-content {
+    background-color: #fafafa;
+}
