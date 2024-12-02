@@ -1,0 +1,141 @@
+/* Center the initial button vertically */
+#initialState {
+    margin-top: 20vh;
+}
+
+/* Chat interface styles */
+.chat-messages {
+    height: 60vh;
+    overflow-y: auto;
+    padding: 1rem;
+    background-color: #f5f5f5;
+    border-radius: 4px;
+}
+
+.message {
+    margin-bottom: 1rem;
+    max-width: 80%;
+}
+
+.message.sent {
+    margin-left: auto;
+    background-color: #485fc7;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 1rem 1rem 0 1rem;
+}
+
+.message.received {
+    margin-right: auto;
+    background-color: #e4e4e4;
+    padding: 0.75rem;
+    border-radius: 1rem 1rem 1rem 0;
+}
+
+/* Loading animation */
+.loading-animation {
+    margin-top: 20vh;
+}
+
+.fa-pulse {
+    color: #485fc7;
+}
+
+/* Add these styles to your existing chat.css */
+
+.message {
+    margin-bottom: 1rem;
+    max-width: 80%;
+}
+
+.message.sent {
+    margin-left: auto;
+    background-color: #485fc7;
+    color: white;
+    padding: 0.75rem;
+    border-radius: 1rem 1rem 0 1rem;
+}
+
+.message.received {
+    margin-right: auto;
+    background-color: #e4e4e4;
+    padding: 0.75rem;
+    border-radius: 1rem 1rem 1rem 0;
+}
+
+.sender-name {
+    display: block;
+    font-size: 0.8rem;
+    margin-bottom: 0.3rem;
+    font-weight: bold;
+}
+
+.message.sent .sender-name {
+    color: #f0f0f0;
+}
+
+.message.received .sender-name {
+    color: #666;
+}
+
+.message-text {
+    word-break: break-word;
+}
+
+/* Typing indicator */
+.typing-indicator {
+    background-color: #e4e4e4 !important;
+    padding: 1rem !important;
+    border-radius: 1rem !important;
+}
+
+.typing-dots {
+    display: flex;
+    gap: 4px;
+    margin-top: 5px;
+}
+
+.typing-dots span {
+    width: 8px;
+    height: 8px;
+    background: #666;
+    border-radius: 50%;
+    animation: typing 1s infinite ease-in-out;
+}
+
+.typing-dots span:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.typing-dots span:nth-child(2) {
+    animation-delay: 0.3s;
+}
+
+.typing-dots span:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes typing {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Add these to your existing styles */
+.level {
+    align-items: center;
+    border-bottom: 1px solid #dbdbdb;
+    padding-bottom: 1rem;
+}
+
+#completeChat {
+    transition: all 0.3s ease;
+}
+
+#completeChat:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
