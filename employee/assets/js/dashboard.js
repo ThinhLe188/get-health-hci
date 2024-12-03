@@ -84,5 +84,187 @@ $(document).ready(function() {
         $('.tab-content').eq(tabId).removeClass('is-hidden');
     });
 
+    
+    // Add click handler to appointment cards
+    $('.card').click(function() {
+        // Store a reference to the clicked card
+        const clickedCard = $(this);
+
+        // Get appointment details from the card
+        const time = clickedCard.find('.level-item strong').text();
+        const status = clickedCard.find('.tag').text();
+        const patient = clickedCard.find('p:contains("Patient:")').text().replace('Patient:', '').trim();
+        const service = clickedCard.find('p:contains("Service:")').text().replace('Service:', '').trim();
+        const durationField = $('#modalDuration');
+        let originalDuration = clickedCard.find('p:contains("Duration:")').text().replace('Duration:', '').trim();
+
+        // Update modal with appointment details
+        $('#modalDateTime').text(`Today, ${time}`);
+        $('#modalStatus').html(`<span class="tag ${
+            status === 'Confirmed' ? 'is-success' :
+            status === 'Completed' ? 'is-info' :
+            'is-warning'
+        }">${status}</span>`);
+        $('#modalPatient').text(patient);
+        $('#modalService').text(service);
+        durationField.text(originalDuration);
+
+        // Show or hide buttons based on status
+        if (status === 'Completed') {
+            $('#editAppointment, #cancelAppointment').hide();
+            $('#confirmAppointment').hide(); // Ensure confirm button is hidden
+        } else if (status === 'Pending') {
+            $('#editAppointment, #confirmAppointment, #cancelAppointment').show();
+        } else {
+            $('#editAppointment, #cancelAppointment').show();
+            $('#confirmAppointment').hide(); // Ensure confirm button is hidden
+        }
+
+        // Show modal
+        $('#appointmentModal').addClass('is-active');
+
+        // Edit appointment handler
+        $('#editAppointment').click(function() {
+            // Make duration field editable
+            durationField.attr('contenteditable', 'true').css({
+                'border': '1px dashed #007BFF',
+                'background-color': '#e7f1ff'
+            });
+    
+            // Hide edit, cancel appointment, and close buttons
+            $('#editAppointment, #cancelAppointment, #closeModal').hide();
+    
+            // Check if status is pending to hide the confirm button
+            if ($('#modalStatus').text().trim() === 'Pending') {
+                $('#confirmAppointment').hide();
+            }
+    
+            // Add a save button to confirm changes
+            if (!$('#saveChanges').length) {
+                $('<button class="button is-success" id="saveChanges">Reschedule & Save</button>')
+                    .insertAfter('#editAppointment')
+                    .click(function() {
+                        // Save changes and disable editing
+                        durationField.attr('contenteditable', 'false').css({
+                            'border': '',
+                            'background-color': ''
+                        });
+    
+                        // Update the duration text in the clicked card
+                        clickedCard.find('p:contains("Duration:")').html(`<strong>Duration:</strong> ${durationField.text()}`);
+                        originalDuration = durationField.text();
+    
+                        alert('Changes saved successfully');
+                        $('#cancelChanges').remove(); // Remove the cancel button
+                        $(this).remove(); // Remove the save button after saving
+    
+                        // Show the hidden buttons
+                        $('#editAppointment, #cancelAppointment, #closeModal').show();
+                        if ($('#modalStatus').text().trim() === 'Pending') {
+                            $('#confirmAppointment').show();
+                        }
+                    });
+            }
+    
+            // Add a cancel button to discard changes
+            if (!$('#cancelChanges').length) {
+                $('<button class="button is-danger is-light" id="cancelChanges">Cancel Changes</button>')
+                    .insertAfter('#saveChanges')
+                    .click(function() {
+                        // Revert changes and disable editing
+                        durationField.text(originalDuration).attr('contenteditable', 'false').css({
+                            'border': '',
+                            'background-color': ''
+                        });
+                        $('#saveChanges').remove(); // Remove the save button
+                        $(this).remove(); // Remove the cancel button
+    
+                        // Show the hidden buttons
+                        $('#editAppointment, #cancelAppointment, #closeModal').show();
+                        if ($('#modalStatus').text().trim() === 'Pending') {
+                            $('#confirmAppointment').show();
+                        }
+                    });
+            }
+        });
+    });
+
+
+
+    // Close modal handlers
+    $('#closeModal').click(function() {
+        $('#appointmentModal').removeClass('is-active');
+    });
+
+    // Confirm appointment handler
+    $('#confirmAppointment').click(function() {
+        alert('Appointment confirmed successfully');
+        $('#appointmentModal').removeClass('is-active');
+    });
+
+    // Edit appointment handler
+    // $('#editAppointment').click(function() {
+    //     // Make time and duration fields editable
+    //     const durationField = $('#modalDuration');
+    //     let originalDuration = durationField.text(); // Store original value
+
+    //     // Add visual indicators for editable fields
+    //     durationField.attr('contenteditable', 'true').css({
+    //         'border': '1px dashed #007BFF',
+    //         'background-color': '#e7f1ff'
+    //     });
+
+    //     // Hide edit, cancel appointment, and close buttons
+    //     $('#editAppointment, #cancelAppointment, #closeModal').hide();
+
+    //     // Add a save button to confirm changes
+    //     if (!$('#saveChanges').length) {
+    //         $('<button class="button is-success" id="saveChanges">Reschedule & Save</button>')
+    //             .insertAfter('#editAppointment')
+    //             .click(function() {
+    //                 // Save changes and disable editing
+    //                 durationField.attr('contenteditable', 'false').css({
+    //                     'border': '',
+    //                     'background-color': ''
+    //                 });
+
+    //                 // Update the originalDuration with the new value
+    //                 originalDuration = durationField.text();
+
+    //                 alert('Changes saved successfully');
+    //                 $('#cancelChanges').remove(); // Remove the cancel button
+    //                 $(this).remove(); // Remove the save button after saving
+
+    //                 // Show the hidden buttons
+    //                 $('#editAppointment, #cancelAppointment, #closeModal').show();
+    //             });
+    //     }
+
+    //     // Add a cancel button to discard changes
+    //     if (!$('#cancelChanges').length) {
+    //         $('<button class="button is-light" id="cancelChanges">Cancel Changes</button>')
+    //             .insertAfter('#saveChanges')
+    //             .click(function() {
+    //                 // Revert changes and disable editing
+    //                 durationField.text(originalDuration).attr('contenteditable', 'false').css({
+    //                     'border': '',
+    //                     'background-color': ''
+    //                 });
+    //                 $('#saveChanges').remove(); // Remove the save button
+    //                 $(this).remove(); // Remove the cancel button
+
+    //                                     // Show the hidden buttons
+    //                 $('#editAppointment, #cancelAppointment, #closeModal').show();
+    //             });
+    //     }
+    // });
+
+    // Cancel appointment handler
+    $('#cancelAppointment').click(function() {
+        if (confirm('Are you sure you want to cancel this appointment?')) {
+            alert('Appointment cancelled successfully');
+            $('#appointmentModal').removeClass('is-active');
+        }
+    });
 
 });

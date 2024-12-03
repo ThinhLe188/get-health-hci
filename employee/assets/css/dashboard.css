@@ -128,3 +128,39 @@
     padding: 0.75rem;
     border-radius: 1rem 1rem 1rem 0;
 }
+
+/* Modal styles */
+.modal-card {
+    max-height: 90vh;
+}
+
+.modal-card-body {
+    max-height: calc(90vh - 200px);
+    overflow-y: auto;
+}
+
+.modal-card-body .field {
+    margin-bottom: 1.5rem;
+}
+
+.modal-card-body .label {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+}
+
+.modal-card-foot {
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+/* Make appointment cards clickable */
+.card {
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}

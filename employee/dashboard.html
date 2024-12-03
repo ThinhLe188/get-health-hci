@@ -368,16 +368,77 @@
                     <div class="box">
                         <h2 class="title is-4">Today's Summary</h2>
                         <div class="content">
-                            <p><strong>Total Appointments:</strong> 3</p>
-                            <p><strong>Confirmed:</strong> 2</p>
-                            <p><strong>Pending:</strong> 1</p>
+                            <p><strong>Total Appointments:</strong> 8</p>
+                            <p><strong>Confirmed:</strong> 4</p>
+                            <p><strong>Pending:</strong> 2</p>
                             <hr>
+                            <p><strong>Completed:</strong> 2</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Appointment Detail Modal -->
+    <div class="modal" id="appointmentModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Appointment Details</p>
+            </header>
+            <section class="modal-card-body">
+                <div class="content">
+                    <div class="field">
+                        <label class="label">Date & Time</label>
+                        <p id="modalDateTime" class="has-text-weight-semibold"></p>
+                    </div>
+                    <div class="field">
+                        <label class="label">Status</label>
+                        <p id="modalStatus"></p>
+                    </div>
+                    <div class="field">
+                        <label class="label">Patient Information</label>
+                        <p id="modalPatient"></p>
+                        <p id="modalContact" class="is-size-7">Contact: +1 234-567-8900</p>
+                    </div>
+                    <div class="field">
+                        <label class="label">Service</label>
+                        <p id="modalService"></p>
+                    </div>
+                    <div class="field">
+                        <label class="label">Duration</label>
+                        <p id="modalDuration"></p>
+                    </div>
+                    <div class="field">
+                        <label class="label">Notes</label>
+                        <p id="modalNotes" class="is-size-7">No specific allergies or medical conditions reported.</p>
+                    </div>
+                </div>
+            </section>
+            <footer class="modal-card-foot">
+                <button class="button is-success" id="editAppointment">
+                    <span class="icon">
+                        <i class="fas fa-edit"></i>
+                    </span>
+                    <span>Edit</span>
+                </button>
+                <button class="button is-info" id="confirmAppointment" style="display: none;">
+                    <span class="icon">
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <span>Confirm</span>
+                </button>
+                <button class="button is-danger is-light" id="cancelAppointment">
+                    <span class="icon">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <span>Cancel Appointment</span>
+                </button>
+                <button class="button" id="closeModal">Close</button>
+            </footer>
+        </div>
+    </div>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
