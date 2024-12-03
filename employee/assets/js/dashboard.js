@@ -23,23 +23,23 @@ $(document).ready(function() {
         // Sample appointments data (you can modify this)
         const appointmentsData = {
             5: [
-                { time: '10:00 AM', title: 'Meeting with John', status: 'Confirmed' },
-                { time: '2:00 PM', title: 'Dentist Appointment', status: 'Pending' }
+                { time: '10:00 AM', title: 'Mental Health Consultation', status: 'Confirmed', duration: '1 hour' },
+                { time: '2:00 PM', title: 'Physical Health Checkup', status: 'Pending', duration: '30 minutes' }
             ],
             7: [
-                { time: '1:00 PM', title: 'Lunch with Sarah', status: 'Confirmed' }
+                { time: '1:00 PM', title: 'Mental Health Checkup', status: 'Confirmed', duration: '45 minutes' }
             ],
             11: [
-                { time: '9:00 AM', title: 'Project Review', status: 'Confirmed' },
-                { time: '11:00 AM', title: 'Call with Client', status: 'Confirmed' },
-                { time: '3:00 PM', title: 'Gym', status: 'Pending' }
+                { time: '9:00 AM', title: 'Physical Health Consultation', status: 'Confirmed', duration: '1 hour' },
+                { time: '11:00 AM', title: 'Mental Health Consultation', status: 'Confirmed', duration: '1 hour' },
+                { time: '3:00 PM', title: 'Mental Health Checkup', status: 'Pending', duration: '30 minutes' }
             ],
             19: [
-                { time: '4:00 PM', title: 'Coffee with Alex', status: 'Confirmed' }
+                { time: '4:00 PM', title: 'Mental Health Checkup', status: 'Confirmed', duration: '45 minutes' }
             ],
             27: [
-                { time: '12:00 PM', title: 'Team Meeting', status: 'Pending' },
-                { time: '5:00 PM', title: 'Dinner with Family', status: 'Confirmed' }
+                { time: '12:00 PM', title: 'Physical Health Checkup', status: 'Pending', duration: '30 minutes' },
+                { time: '5:00 PM', title: 'Physical Health Checkup', status: 'Confirmed', duration: '1 hour' }
             ]
         };
     
@@ -75,7 +75,7 @@ $(document).ready(function() {
         }
     
         // Create a dropdown container using Bulma's card component
-        const dropdown = $('<div style="position: absolute; display: none; z-index: 1000; width: 350px;"></div>');
+        const dropdown = $('<div style="position: absolute; display: none; z-index: 1000; width: 400px;"></div>');
         const dropdownContent = $('<div class="card-content" style="background-color: white; border: 1px solid #ededed;"></div>');
         dropdown.append(dropdownContent);
         $('body').append(dropdown);
@@ -97,18 +97,21 @@ $(document).ready(function() {
                     if (appointment.status === 'Confirmed') {
                         statusClass = 'is-success';
                     } else if (appointment.status === 'Pending') {
-                        statusClass = 'is-warning';
+                        statusClass = 'is-danger';
                     } else {
                         statusClass = 'is-info'; // Default or other statuses
                     }
                 
                     dropdownContent.append(`
-                        <div class="box appointment-item" style="border: 1px solid #d2d2d2; display: flex; justify-content: space-between; align-items: center; gap: 20px;">
+                        <div class="box appointment-item" style="border: 1px solid #d2d2d2; display: flex; justify-content: space-between; align-items: center; gap: 10px;">
                             <div>
                                 <p><strong>${appointment.time}</strong></p>
                                 <p>${appointment.title}</p>
                             </div>
-                            <span class="tag ${statusClass}">${appointment.status}</span>
+                            <div style="text-align: right; weight: 500px;">
+                                <span class="tag ${statusClass}">${appointment.status}</span>
+                                <p style="margin-top: 5px;">${appointment.duration}</p>
+                            </div>
                         </div>
                     `);
                 });
