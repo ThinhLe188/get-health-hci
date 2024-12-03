@@ -9,7 +9,10 @@ class MentalPage(QWidget):
         """Initialize mental health page
         """
         super().__init__()
+        self.setStyleSheet('background-color: rgb(0, 255, 0);')
+        self.setFixedHeight(1864)
         layout = QVBoxLayout()
         layout.setContentsMargins(0, 0, 0, 0)
         layout.setSpacing(0)
         self.setLayout(layout)
+        layout.addStretch()

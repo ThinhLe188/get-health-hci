@@ -1,6 +1,12 @@
-APP_NAME = 'GET HEALTH'
-APP_LOGO = 'assets/logo.png'
-APP_LOGIN = 'assets/login.png'
+APP_NAME     = 'GET HEALTH'
+APP_LOGO     = 'assets/logo.png'
+APP_LOGIN    = 'assets/login.png'
+APP_LOGOUT   = 'assets/logout.png'
+APP_NEWS     = 'assets/news.png'
+APP_MENTAL   = 'assets/mental.png'
+APP_PHYSICAL = 'assets/physical.png'
+APP_PROFILE  = 'assets/profile.png'
+APP_EXIT     = 'assets/exit.png'
 
 # sample data
 USER_PFP = 'assets/pfp.png'

@@ -9,6 +9,8 @@ class NewsPage(QWidget):
         """Initialize health news page
         """
         super().__init__()
+        self.setStyleSheet('background-color: rgb(255, 0, 0);')
+        self.setFixedHeight(1864)
         layout = QVBoxLayout()
         layout.setContentsMargins(0, 0, 0, 0)
         layout.setSpacing(0)
