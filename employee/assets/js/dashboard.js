@@ -10,52 +10,149 @@ $(document).ready(function() {
         const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 
                           'July', 'August', 'September', 'October', 'November', 'December'];
         $('.title.is-4.mb-0').text(`${monthNames[month]} ${year}`);
-
+    
         // Get first day of month and total days
         const firstDay = new Date(year, month, 1);
         const lastDay = new Date(year, month + 1, 0);
         const totalDays = lastDay.getDate();
         const startingDay = firstDay.getDay();
-
+    
         // Clear existing calendar days
         $('.calendar-body').empty();
-
+    
         // Sample appointments data (you can modify this)
-        const appointmentsCount = {
-            5: 2,  // 2 appointments on the 5th
-            7: 1,  // 1 appointment on the 7th
-            11: 3, // 3 appointments on the 11th
-            19: 1, // 1 appointment on the 19th
-            27: 2  // 2 appointments on the 27th
+        const appointmentsData = {
+            5: [
+                { time: '10:00 AM', title: 'Meeting with John', status: 'Confirmed' },
+                { time: '2:00 PM', title: 'Dentist Appointment', status: 'Pending' }
+            ],
+            7: [
+                { time: '1:00 PM', title: 'Lunch with Sarah', status: 'Confirmed' }
+            ],
+            11: [
+                { time: '9:00 AM', title: 'Project Review', status: 'Confirmed' },
+                { time: '11:00 AM', title: 'Call with Client', status: 'Confirmed' },
+                { time: '3:00 PM', title: 'Gym', status: 'Pending' }
+            ],
+            19: [
+                { time: '4:00 PM', title: 'Coffee with Alex', status: 'Confirmed' }
+            ],
+            27: [
+                { time: '12:00 PM', title: 'Team Meeting', status: 'Pending' },
+                { time: '5:00 PM', title: 'Dinner with Family', status: 'Confirmed' }
+            ]
         };
-
+    
         // Add previous month's days
         const prevMonthLastDay = new Date(year, month, 0).getDate();
         for (let i = startingDay - 1; i >= 0; i--) {
             $('.calendar-body').append(`<div class="has-text-grey-light">${prevMonthLastDay - i}</div>`);
         }
-
+    
         // Add current month's days
         for (let day = 1; day <= totalDays; day++) {
             let classes = '';
             let title = '';
-            
+    
             // Check if day has appointments
-            if (appointmentsCount[day]) {
+            if (appointmentsData[day]) {
                 classes = 'has-background-primary-light';
-                const count = appointmentsCount[day];
-                title = `title="${count} appointment${count > 1 ? 's' : ''}"`;
+                const appointments = appointmentsData[day];
+                title = `title="${appointments.length} appointment${appointments.length > 1 ? 's' : ''}"`;
             }
             
-            $('.calendar-body').append(`<div class="${classes}" ${title}>${day}</div>`);
+            $('.calendar-body').append(`
+                <div class="${classes}" ${title} data-day="${day}">
+                    ${day}
+                </div>
+            `);
         }
-
+    
         // Add next month's days
         const remainingCells = 42 - (startingDay + totalDays);
         for (let i = 1; i <= remainingCells; i++) {
             $('.calendar-body').append(`<div class="has-text-grey-light">${i}</div>`);
         }
+    
+        // Create a dropdown container using Bulma's card component
+        const dropdown = $('<div style="position: absolute; display: none; z-index: 1000; width: 350px;"></div>');
+        const dropdownContent = $('<div class="card-content" style="background-color: white; border: 1px solid #ededed;"></div>');
+        dropdown.append(dropdownContent);
+        $('body').append(dropdown);
+    
+        let hideTimeout;
+    
+        // Add hover event to show/hide appointment previews
+        $('.calendar-body div.has-background-primary-light').hover(
+            function(event) {
+                clearTimeout(hideTimeout); // Clear any existing hide timeout
+                const day = $(this).data('day');
+                const appointments = appointmentsData[day];
+    
+                // Populate the dropdown with appointment previews
+                dropdownContent.empty();
+                appointments.forEach(appointment => {
+                    // Determine the appropriate Bulma class based on the status
+                    let statusClass = '';
+                    if (appointment.status === 'Confirmed') {
+                        statusClass = 'is-success';
+                    } else if (appointment.status === 'Pending') {
+                        statusClass = 'is-warning';
+                    } else {
+                        statusClass = 'is-info'; // Default or other statuses
+                    }
+                
+                    dropdownContent.append(`
+                        <div class="box appointment-item" style="border: 1px solid #d2d2d2; display: flex; justify-content: space-between; align-items: center; gap: 20px;">
+                            <div>
+                                <p><strong>${appointment.time}</strong></p>
+                                <p>${appointment.title}</p>
+                            </div>
+                            <span class="tag ${statusClass}">${appointment.status}</span>
+                        </div>
+                    `);
+                });
+    
+                // Position the dropdown
+                const offset = $(this).offset();
+                dropdown.css({
+                    top: offset.top + $(this).outerHeight(),
+                    left: offset.left,
+                    display: 'block'
+                });
+            },
+            function() {
+                // Set a timeout to hide the dropdown
+                hideTimeout = setTimeout(() => {
+                    dropdown.hide();
+                }, 300); // Adjust the delay as needed
+            }
+        );
+    
+        // Ensure dropdown hides when mouse leaves it
+        dropdown.hover(
+            function() {
+                clearTimeout(hideTimeout); // Clear the hide timeout if hovering over the dropdown
+            },
+            function() {
+                // Set a timeout to hide the dropdown
+                hideTimeout = setTimeout(() => {
+                    dropdown.hide();
+                }, 300); // Adjust the delay as needed
+            }
+        );
     }
+
+    // Add CSS for hover effect on appointment items
+    $('<style>')
+        .prop('type', 'text/css')
+        .html(`
+            .appointment-item:hover {
+                background-color: #f5f5f5;
+                cursor: pointer;
+            }
+        `)
+        .appendTo('head');
 
     // Add click handlers for navigation buttons
     $('#prevMonth').click(function() {

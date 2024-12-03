@@ -45,6 +45,7 @@
 
 .calendar-body div.has-background-primary-light {
     position: relative;
+    background-color: #b7f3ea !important;
 }
 
 .calendar-body div.has-background-primary-light::after {
