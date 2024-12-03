@@ -97,7 +97,7 @@ $(document).ready(function() {
         const service = clickedCard.find('p:contains("Service:")').text().replace('Service:', '').trim();
         const durationField = $('#modalDuration');
         let originalDuration = clickedCard.find('p:contains("Duration:")').text().replace('Duration:', '').trim();
-
+       
         // Update modal with appointment details
         $('#modalDateTime').text(`Today, ${time}`);
         $('#modalStatus').html(`<span class="tag ${
@@ -124,7 +124,8 @@ $(document).ready(function() {
         $('#appointmentModal').addClass('is-active');
 
         // Edit appointment handler
-        $('#editAppointment').click(function() {
+        $('#editAppointment').off('click').on('click', function() {
+
             // Make duration field editable
             durationField.attr('contenteditable', 'true').css({
                 'border': '1px dashed #007BFF',
