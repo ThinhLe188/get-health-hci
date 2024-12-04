@@ -1,5 +1,4 @@
 import os
-import sys
 
 import common.constants as const
 from components.card.news_pinned_widget import NewsPinnedCardWidget
@@ -22,10 +21,6 @@ class ContentWidget(QWidget):
         self._widget_scroll.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         self._widget_scroll.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
         layout.addWidget(self._widget_scroll)
-        try:
-            self._curr_dir = sys._MEIPASS
-        except:
-            self._curr_dir = os.getcwd()
 
 
     def display_page(self):

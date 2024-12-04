@@ -10,24 +10,18 @@ class NewsPage(ContentWidget):
         self._widget_content.tabBar().setDocumentMode(True)
         self._widget_content.setFixedSize(430, 820)
         self._widget_content.setContentsMargins(0, 0, 0, 0)
-        self._list_all = QListWidget()
-        self._list_all.setAutoScroll(False)
-        self._list_all.setSpacing(5)
-        self._list_all.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self._list_all.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self._list_top = QListWidget()
-        self._list_top.setAutoScroll(False)
-        self._list_top.setSpacing(5)
-        self._list_top.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self._list_top.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self._list_saved = QListWidget()
-        self._list_saved.setAutoScroll(False)
-        self._list_saved.setSpacing(5)
-        self._list_saved.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self._list_saved.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self._widget_content.addTab(self._list_all, 'All')
-        self._widget_content.addTab(self._list_top, 'Top News')
-        self._widget_content.addTab(self._list_saved, 'Saved')
+        self.list_news_all = QListWidget()
+        self.list_news_all.setAutoScroll(False)
+        self.list_news_all.setSpacing(5)
+        self.list_news_all.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.list_news_all.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.list_news_top = QListWidget()
+        self.list_news_top.setAutoScroll(False)
+        self.list_news_top.setSpacing(5)
+        self.list_news_top.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self.list_news_top.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
+        self._widget_content.addTab(self.list_news_all, 'All')
+        self._widget_content.addTab(self.list_news_top, 'Top News')
         self._load_news()
         # connect signals
         self._widget_content.currentChanged.connect(self.update_layout)
@@ -40,16 +34,16 @@ class NewsPage(ContentWidget):
 
     def _load_news(self):
         for news in const.NEWS:
-            item = QListWidgetItem(self._list_all)
-            card_news = NewsCardWidget(self, self._curr_dir, *news)
+            item = QListWidgetItem(self.list_news_all)
+            card_news = NewsCardWidget(self.parent, self.parent.curr_dir, *news)
             item.setSizeHint(QSize(400, 340))
-            self._list_all.setItemWidget(item, card_news)
+            self.list_news_all.setItemWidget(item, card_news)
 
         for news in const.NEWS_TOP:
-            item = QListWidgetItem(self._list_top)
-            card_news = NewsCardWidget(self, self._curr_dir, *news)
+            item = QListWidgetItem(self.list_news_top)
+            card_news = NewsCardWidget(self.parent, self.parent.curr_dir, *news)
             item.setSizeHint(QSize(400, 340))
-            self._list_top.setItemWidget(item, card_news)
+            self.list_news_top.setItemWidget(item, card_news)
 
 
     def update_layout(self, index: int):
@@ -68,18 +62,3 @@ class NewsPage(ContentWidget):
 
             # repaint the viewport
             current_list_widget.viewport().update()
-
-
-    @pyqtSlot()
-    def bookmark_news(self, news_item: NewsCardWidget, news: tuple):
-        item = QListWidgetItem(self._list_saved)
-        card_news = NewsPinnedCardWidget(self, news_item, self._curr_dir, *news)
-        item.setSizeHint(QSize(400, 340))
-        self._list_saved.setItemWidget(item, card_news)
-        news_item.set_bookmark(item)
-
-
-    @pyqtSlot()
-    def remove_bookmark_news(self, item: QListWidgetItem):
-        self._list_saved.removeItemWidget(item)
-        self._list_saved.takeItem(self._list_saved.row(item))

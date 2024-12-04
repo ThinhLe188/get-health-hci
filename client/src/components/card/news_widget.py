@@ -4,9 +4,9 @@ from PyQt5.QtCore import pyqtSlot
 
 
 class NewsCardWidget(CardWidget):
-    def __init__(self, parent, curr_dir: str, img: str, title: str, author: str, location: str, publish: str, content: str):
+    def __init__(self, central_widget, curr_dir: str, img: str, title: str, author: str, location: str, publish: str, content: str):
         super().__init__(curr_dir, img, title, author, location, publish, content)
-        self.parent = parent
+        self.central_widget = central_widget
         self._data = (img, title, author, location, publish, content)
         self.pinned_item = None
         self._label_bookmark = ButtonLabel(const.APP_BOOKMARK, const.APP_BOOKMARK_FILL)
@@ -21,9 +21,9 @@ class NewsCardWidget(CardWidget):
     @pyqtSlot(bool)
     def _handle_bookmark(self, is_toggled: bool):
         if is_toggled:
-            self.parent.bookmark_news(self, self._data)
+            self.central_widget.bookmark_news(self, self._data)
         else:
-            self.parent.remove_bookmark_news(self.pinned_item)
+            self.central_widget.remove_bookmark_news(self.pinned_item)
 
 
     def toggle_bookmark(self):

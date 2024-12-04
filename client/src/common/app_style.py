@@ -120,10 +120,12 @@ STYLE_SHEET = """
     }
 
     QScrollArea {
+        background-color: rgb(230, 230, 0);
         border: none;
     }
 
     QListWidget {
+        min-height: 820px;
         background-color: rgb(230, 255, 230);
     }
 

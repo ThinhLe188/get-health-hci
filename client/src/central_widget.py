@@ -1,16 +1,23 @@
+import os
+import sys
+
 import common.constants as const
 from components.button.header_button_widget import HeaderButtonWidget
 from components.button.navbar_button_widget import NavBarButtonWidget
+from components.card.news_pinned_widget import NewsPinnedCardWidget
+from components.card.news_widget import NewsCardWidget
 from components.modal.login_widget import LoginWidget
 from components.modal.sidebar_widget import SideBarWidget
+from pages.article_saved_widget import SavedArticlesPage
 from pages.mental_page import MentalPage
 from pages.news_local_page import NewsLocalPage
 from pages.news_page import NewsPage
 from pages.physical_page import PhysicalPage
-from PyQt5.QtCore import Qt, pyqtSlot
+from PyQt5.QtCore import QSize, Qt, pyqtSlot
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import (QHBoxLayout, QLabel, QStackedLayout,
-                             QStackedWidget, QVBoxLayout, QWidget)
+from PyQt5.QtWidgets import (QHBoxLayout, QLabel, QListWidgetItem,
+                             QStackedLayout, QStackedWidget, QVBoxLayout,
+                             QWidget)
 
 
 class CentralWidget(QWidget):
@@ -19,6 +26,10 @@ class CentralWidget(QWidget):
         """
         super().__init__(parent)
         # init parameters
+        try:
+            self.curr_dir = sys._MEIPASS
+        except:
+            self.curr_dir = os.getcwd()
         self._prev_stack_idx = None
         self._current_nav_btn = None
         self._user_logged_in = False
@@ -77,6 +88,7 @@ class CentralWidget(QWidget):
         # create utility buttons
         self.button_search = HeaderButtonWidget(const.APP_SEARCH)
         self.button_filter = HeaderButtonWidget(const.APP_FILTER)
+        self.button_search.hide()
         self.button_filter.hide()
         self._layout_header.addWidget(self.button_search, alignment=Qt.AlignmentFlag.AlignRight)
         self._layout_header.addWidget(self.button_filter, alignment=Qt.AlignmentFlag.AlignRight)
@@ -94,12 +106,14 @@ class CentralWidget(QWidget):
         # create navbar items
         button_news_global = NavBarButtonWidget('Global', const.APP_NEWS)
         button_news_local = NavBarButtonWidget('Local', const.APP_LOCAL)
+        button_news_saved = NavBarButtonWidget('Saved', const.APP_BOOKMARK_FILL)
         button_mental = NavBarButtonWidget('Mental', const.APP_MENTAL)
         button_physical = NavBarButtonWidget('Physical', const.APP_PHYSICAL)
         button_setting = NavBarButtonWidget('Settings', const.APP_SETTING)
         # add items
         layout_footer.addWidget(button_news_global)
         layout_footer.addWidget(button_news_local)
+        layout_footer.addWidget(button_news_saved)
         layout_footer.addWidget(button_mental)
         layout_footer.addWidget(button_physical)
         layout_footer.addWidget(button_setting)
@@ -107,6 +121,7 @@ class CentralWidget(QWidget):
         button_setting.clicked.connect(self._open_sidebar)
         button_news_global.clicked.connect(lambda: self._switch_page(const.APP_PAGE_NEWS_IDX))
         button_news_local.clicked.connect(lambda: self._switch_page(const.APP_PAGE_NEWS_LOCAL_IDX))
+        button_news_saved.clicked.connect(lambda: self._switch_page(const.APP_PAGE_NEWS_SAVED_IDX))
         button_mental.clicked.connect(lambda: self._switch_page(const.APP_PAGE_MENTAL_IDX))
         button_physical.clicked.connect(lambda: self._switch_page(const.APP_PAGE_PHYSICAL_IDX))
         # init state
@@ -121,11 +136,13 @@ class CentralWidget(QWidget):
         # create content sections
         self._widget_news = NewsPage(self)
         self._widget_news_local = NewsLocalPage(self)
+        self._widget_article_saved = SavedArticlesPage(self)
         self._widget_mental = MentalPage(self)
         self._widget_physical = PhysicalPage(self)
         # add sections
         self._widget_stack.addWidget(self._widget_news)
         self._widget_stack.addWidget(self._widget_news_local)
+        self._widget_stack.addWidget(self._widget_article_saved)
         self._widget_stack.addWidget(self._widget_mental)
         self._widget_stack.addWidget(self._widget_physical)
         self._widget_stack.setCurrentIndex(const.APP_PAGE_NEWS_IDX)
@@ -182,6 +199,23 @@ class CentralWidget(QWidget):
     def user_logged_out(self):
         self.back_to_main_widget()
         self._user_logged_in = False
+
+
+    @pyqtSlot()
+    def bookmark_news(self, news_item: NewsCardWidget, news: tuple):
+        list_saved_news = self._widget_article_saved.list_news
+        item = QListWidgetItem(list_saved_news)
+        card_news = NewsPinnedCardWidget(self, news_item, self.curr_dir, *news)
+        item.setSizeHint(QSize(400, 340))
+        list_saved_news.setItemWidget(item, card_news)
+        news_item.set_bookmark(item)
+
+
+    @pyqtSlot()
+    def remove_bookmark_news(self, item: QListWidgetItem):
+        list_saved_news = self._widget_article_saved.list_news
+        list_saved_news.removeItemWidget(item)
+        list_saved_news.takeItem(list_saved_news.row(item))
 
 
     @pyqtSlot()
