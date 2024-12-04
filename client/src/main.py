@@ -12,9 +12,23 @@ def update_global_constants():
         curr_dir = sys._MEIPASS
     except:
         curr_dir = os.getcwd()
-    const.APP_LOGO = os.path.join(curr_dir, const.APP_LOGO)
-    const.APP_LOGIN = os.path.join(curr_dir, const.APP_LOGIN)
-    const.USER_PFP = os.path.join(curr_dir, const.USER_PFP)
+    const.USER_PFP     = os.path.join(curr_dir, const.USER_PFP)
+    const.APP_LOGO     = os.path.join(curr_dir, const.APP_LOGO)
+    const.APP_LOGIN    = os.path.join(curr_dir, const.APP_LOGIN)
+    const.APP_LOGOUT   = os.path.join(curr_dir, const.APP_LOGOUT)
+    const.APP_NEWS     = os.path.join(curr_dir, const.APP_NEWS)
+    const.APP_LOCAL    = os.path.join(curr_dir, const.APP_LOCAL)
+    const.APP_MENTAL   = os.path.join(curr_dir, const.APP_MENTAL)
+    const.APP_PHYSICAL = os.path.join(curr_dir, const.APP_PHYSICAL)
+    const.APP_PROFILE  = os.path.join(curr_dir, const.APP_PROFILE)
+    const.APP_SETTING  = os.path.join(curr_dir, const.APP_SETTING)
+    const.APP_EXIT     = os.path.join(curr_dir, const.APP_EXIT)
+    const.APP_FILTER   = os.path.join(curr_dir, const.APP_FILTER)
+    const.APP_SEARCH   = os.path.join(curr_dir, const.APP_SEARCH)
+    const.APP_BACK     = os.path.join(curr_dir, const.APP_BACK)
+    const.APP_BOOKMARK = os.path.join(curr_dir, const.APP_BOOKMARK)
+    const.APP_BOOKMARK_FILL = os.path.join(curr_dir, const.APP_BOOKMARK_FILL)
+    const.APP_REMOVE = os.path.join(curr_dir, const.APP_REMOVE)
 
 
 if __name__ == '__main__':

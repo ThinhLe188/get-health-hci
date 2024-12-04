@@ -6,7 +6,13 @@ class MentalPage(ContentWidget):
         """Initialize mental health page
         """
         super().__init__(parent)
-        self.layout().addStretch()
+        layout = self.layout()
+        self._widget_content = QWidget()
+        self._widget_content.setFixedHeight(1864)
+        self._layout_content = QVBoxLayout()
+        self._widget_content.setLayout(self._layout_content)
+        self._widget_scroll.setWidget(self._widget_content)
+        layout.addWidget(self._widget_scroll)
 
 
     def display_page(self):

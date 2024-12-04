@@ -1,7 +1,7 @@
 import common.constants as const
 from PyQt5.QtCore import Qt, pyqtSignal
 from PyQt5.QtGui import QMouseEvent, QPainter
-from PyQt5.QtWidgets import QHBoxLayout, QStyle, QStyleOption, QWidget
+from PyQt5.QtWidgets import QStyle, QStyleOption, QWidget, QVBoxLayout
 
 
 class ButtonWidget(QWidget):
@@ -11,7 +11,7 @@ class ButtonWidget(QWidget):
         """Initialize button widget
         """
         super().__init__()
-        layout = QHBoxLayout()
+        layout = QVBoxLayout()
         self.setLayout(layout)    
 
 

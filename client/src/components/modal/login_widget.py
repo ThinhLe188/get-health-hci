@@ -64,6 +64,12 @@ class LoginWidget(ModalWidget):
         layout.addWidget(label_register, alignment=Qt.AlignmentFlag.AlignCenter)
 
 
+    def reset_modal(self):
+        self._label_status.clear()
+        self._input_username.setText(const.USER_ACCOUNT)
+        self._input_password.setText(const.USER_PASSWORD)
+
+
     @pyqtSlot()
     def _handle_login(self):
         if self._input_username.text() == const.USER_ACCOUNT and self._input_password.text() == const.USER_PASSWORD:

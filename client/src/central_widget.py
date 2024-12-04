@@ -1,14 +1,16 @@
 import common.constants as const
+from components.button.header_button_widget import HeaderButtonWidget
 from components.button.navbar_button_widget import NavBarButtonWidget
 from components.modal.login_widget import LoginWidget
 from components.modal.sidebar_widget import SideBarWidget
 from pages.mental_page import MentalPage
+from pages.news_local_page import NewsLocalPage
 from pages.news_page import NewsPage
 from pages.physical_page import PhysicalPage
 from PyQt5.QtCore import Qt, pyqtSlot
 from PyQt5.QtGui import QPixmap
-from PyQt5.QtWidgets import (QHBoxLayout, QLabel, QScrollArea, QStackedLayout,
-                             QVBoxLayout, QWidget)
+from PyQt5.QtWidgets import (QHBoxLayout, QLabel, QStackedLayout,
+                             QStackedWidget, QVBoxLayout, QWidget)
 
 
 class CentralWidget(QWidget):
@@ -47,16 +49,20 @@ class CentralWidget(QWidget):
         self._layout_outer.setCurrentIndex(0)
 
 
-
     def _create_header_section(self):
         widget_header = QWidget(objectName='widget_component')
         widget_header.setFixedHeight(const.BUTTON_H)
         self._layout_header = QHBoxLayout()
         widget_header.setLayout(self._layout_header)
         self._layout_header.setContentsMargins(0, 0, 0, 0)
+        self._layout_header.setSpacing(0)
         # create title widget
+        self.button_back = HeaderButtonWidget(const.APP_BACK)
+        self.button_back.hide()
+        self._layout_header.addWidget(self.button_back, alignment=Qt.AlignmentFlag.AlignLeft)
         widget_title = QWidget()
         self._layout_header.addWidget(widget_title, alignment=Qt.AlignmentFlag.AlignLeft)
+        self._layout_header.addStretch()
         layout_title = QHBoxLayout()
         layout_title.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout_title.setSpacing(0)
@@ -68,6 +74,12 @@ class CentralWidget(QWidget):
         layout_title.addWidget(label_icon)
         self.label_title = QLabel(const.APP_PAGE_NEWS, objectName='label_title')
         layout_title.addWidget(self.label_title)
+        # create utility buttons
+        self.button_search = HeaderButtonWidget(const.APP_SEARCH)
+        self.button_filter = HeaderButtonWidget(const.APP_FILTER)
+        self.button_filter.hide()
+        self._layout_header.addWidget(self.button_search, alignment=Qt.AlignmentFlag.AlignRight)
+        self._layout_header.addWidget(self.button_filter, alignment=Qt.AlignmentFlag.AlignRight)
         return widget_header
 
 
@@ -80,61 +92,44 @@ class CentralWidget(QWidget):
         layout_footer.setContentsMargins(0, 0, 0, 0)
         layout_footer.setSpacing(0)
         # create navbar items
-        button_news = NavBarButtonWidget(const.APP_NEWS)
-        button_mental = NavBarButtonWidget(const.APP_MENTAL)
-        button_physical = NavBarButtonWidget(const.APP_PHYSICAL)
-        button_setting = NavBarButtonWidget(const.APP_SETTING)
+        button_news_global = NavBarButtonWidget('Global', const.APP_NEWS)
+        button_news_local = NavBarButtonWidget('Local', const.APP_LOCAL)
+        button_mental = NavBarButtonWidget('Mental', const.APP_MENTAL)
+        button_physical = NavBarButtonWidget('Physical', const.APP_PHYSICAL)
+        button_setting = NavBarButtonWidget('Settings', const.APP_SETTING)
         # add items
-        layout_footer.addWidget(button_news)
+        layout_footer.addWidget(button_news_global)
+        layout_footer.addWidget(button_news_local)
         layout_footer.addWidget(button_mental)
         layout_footer.addWidget(button_physical)
         layout_footer.addWidget(button_setting)
         # add signals
         button_setting.clicked.connect(self._open_sidebar)
-        button_news.clicked.connect(lambda: self._switch_page(const.APP_PAGE_NEWS_IDX))
+        button_news_global.clicked.connect(lambda: self._switch_page(const.APP_PAGE_NEWS_IDX))
+        button_news_local.clicked.connect(lambda: self._switch_page(const.APP_PAGE_NEWS_LOCAL_IDX))
         button_mental.clicked.connect(lambda: self._switch_page(const.APP_PAGE_MENTAL_IDX))
         button_physical.clicked.connect(lambda: self._switch_page(const.APP_PAGE_PHYSICAL_IDX))
         # init state
-        self._current_nav_btn = button_news
+        self._current_nav_btn = button_news_global
         self._current_nav_btn.setObjectName('widget_button_pressed')
         self.style().polish(self._current_nav_btn)
         return widget_footer
 
 
     def _create_content_sections(self):
-        widget_main = QWidget()
-        self._layout_stack = QStackedLayout()
-        self._layout_stack.setStackingMode(QStackedLayout.StackingMode.StackAll)
-        widget_main.setLayout(self._layout_stack)
+        self._widget_stack = QStackedWidget()
         # create content sections
-        # news page
         self._widget_news = NewsPage(self)
-        self._widget_scroll_news = QScrollArea()
-        self._widget_scroll_news.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self._widget_scroll_news.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self._widget_scroll_news.setWidgetResizable(True)
-        self._widget_scroll_news.setWidget(self._widget_news)
-        # mental page
+        self._widget_news_local = NewsLocalPage(self)
         self._widget_mental = MentalPage(self)
-        self._widget_scroll_mental = QScrollArea()
-        self._widget_scroll_mental.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self._widget_scroll_mental.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self._widget_scroll_mental.setWidgetResizable(True)
-        self._widget_scroll_mental.setWidget(self._widget_mental)
-        # physical page
         self._widget_physical = PhysicalPage(self)
-        self._widget_scroll_physical = QScrollArea()
-        self._widget_scroll_physical.setHorizontalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self._widget_scroll_physical.setVerticalScrollBarPolicy(Qt.ScrollBarPolicy.ScrollBarAlwaysOff)
-        self._widget_scroll_physical.setWidgetResizable(True)
-        self._widget_scroll_physical.setWidget(self._widget_physical)
         # add sections
-        self._layout_stack.addWidget(self._widget_scroll_news)
-        self._layout_stack.addWidget(self._widget_scroll_mental)
-        self._layout_stack.addWidget(self._widget_scroll_physical)
-        self._layout_stack.setCurrentIndex(const.APP_PAGE_NEWS_IDX)
-        widget_main.style()
-        return widget_main
+        self._widget_stack.addWidget(self._widget_news)
+        self._widget_stack.addWidget(self._widget_news_local)
+        self._widget_stack.addWidget(self._widget_mental)
+        self._widget_stack.addWidget(self._widget_physical)
+        self._widget_stack.setCurrentIndex(const.APP_PAGE_NEWS_IDX)
+        return self._widget_stack
 
 
     def user_logged_in(self):
@@ -147,7 +142,7 @@ class CentralWidget(QWidget):
     @pyqtSlot()
     def _switch_page(self, index: int):
         self._switch_nav_tab(index)
-        self._layout_stack.currentWidget().widget().display_page()
+        self._widget_stack.currentWidget().display_page()
 
 
     def _switch_nav_tab(self, index: int):
@@ -157,7 +152,7 @@ class CentralWidget(QWidget):
         self.sender().setObjectName('widget_button_pressed')
         self.style().polish(self.sender())
         self._current_nav_btn = self.sender()
-        self._layout_stack.setCurrentIndex(index)
+        self._widget_stack.setCurrentIndex(index)
 
 
     @pyqtSlot()
@@ -168,6 +163,7 @@ class CentralWidget(QWidget):
     @pyqtSlot()
     def open_login_modal(self):
         self.back_to_main_widget()
+        self._layout_outer.widget(const.APP_LOGIN_MODAL_IDX).reset_modal()
         self._layout_outer.setCurrentIndex(const.APP_LOGIN_MODAL_IDX)
 
 

@@ -32,6 +32,21 @@ STYLE_SHEET = """
         color: rgb(0, 99, 204);
     }
 
+    QLabel#label_icon_button {
+        font-weight: bold;
+        text-align: center;
+    }
+
+    QLabel#label_news_title {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    QLabel#label_news_footer {
+        font-weight: bold;
+        color: grey;
+    }
+
     QWidget#widget_component {
         background-color: rgb(255, 255, 102);
     }
@@ -54,6 +69,11 @@ STYLE_SHEET = """
     QWidget#widget_sidebar_button:hover {
         background-color: rgb(230, 230, 0);
         border-left: 2px solid rgb(2, 102, 0);
+    }
+
+    QWidget#widget_header_button:hover {
+        background-color: rgb(230, 230, 0);
+        border-bottom: 2px solid rgb(2, 102, 0);
     }
      
     QLineEdit#input_prompt {
@@ -79,5 +99,40 @@ STYLE_SHEET = """
 
     QPushButton#button_submit:hover {
         background-color: rgb(2, 128, 0);
+    }
+
+    QTabWidget::pane {
+        background-color: white;
+    }
+
+    QTabBar::tab {
+        padding: 10px;
+        min-width: 55px;
+        margin: 0;
+        border: none;
+        font-weight: bold;
+        background-color: rgb(230, 230, 0);
+    }
+
+    QTabBar::tab:selected {
+        color: rgb(2, 102, 0);
+        border-bottom: 2px solid rgb(2, 102, 0);
+    }
+
+    QScrollArea {
+        border: none;
+    }
+
+    QListWidget {
+        background-color: rgb(230, 255, 230);
+    }
+
+    QListWidget::item {
+        background-color: rgb(255, 255, 102);
+        border-radius: 5px;
+    }
+
+    QListWidget::item:hover {
+        background-color: rgb(230, 230, 0);
     }
 """
