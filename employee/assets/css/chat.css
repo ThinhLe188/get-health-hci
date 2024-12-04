@@ -139,3 +139,61 @@
     transform: translateY(-2px);
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+
+.message.system {
+    margin-right: auto;
+    margin-left: auto;
+    /* background-color: #e4e4e4; */
+    padding-left: 0.75rem;
+    text-align: center;
+    color: rgba(134, 134, 134, 0.764);
+    font-style: italic;
+
+}
+
+/* Add these styles to your existing CSS */
+.chat-panel {
+    background-color: #2a2a2a;
+    border-left: 1px solid #444;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.chat-header {
+    padding: 15px;
+    border-bottom: 1px solid #444;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h3 {
+    color: white;
+    margin: 0;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+}
+
+.chat-input {
+    padding: 15px;
+    display: flex;
+    gap: 10px;
+}
+
+.chat-input .input {
+    background-color: #3a3a3a;
+    border-color: #444;
+    color: white;
+}
+
+.chat-input .input::placeholder {
+    color: #888;
+}

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Today's Appointments</title>
+    <!-- Bulma CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <!-- Toastify -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/css/appointments.css">
+</head>
+<body>
+    <!-- Navbar (same as other pages) -->
+    <nav class="navbar is-light" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <div class="navbar-item">
+                <img src="assets/images/logo.png" alt="Logo" style="max-height: 40px;">
+            </div>
+            <a class="navbar-item" href="dashboard.html">
+                <strong>Dashboard</strong>
+            </a>
+        </div>
+
+        <div class="navbar-start">
+            <a class="navbar-item" href="chat.html">
+                <strong>Daily Chat</strong>
+            </a>
+            <a class="navbar-item" href="appointments.html">
+                <strong>Appointments</strong>
+            </a>
+        </div>
+
+        <div class="navbar-menu">
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-light" href="index.html">
+                            <span class="icon">
+                                <i class="fas fa-sign-out-alt"></i>
+                            </span>
+                            <span>Logout</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="section" style="margin-top: -2rem;">
+        <div class="container appointments">
+            <h1 class="title">Today's Appointments</h1>
+            <div class="appointments">
+                <!-- Confirmed Appointment -->
+                <div class="card mb-4">
+                    <div class="card-content">
+                        <div class="level">
+                            <div class="level-left">
+                                <div class="level-item">
+                                    <span class="icon has-text-info">
+                                        <i class="fas fa-clock"></i>
+                                    </span>
+                                    <strong class="ml-2">9:00 AM</strong>
+                                </div>
+                            </div>
+                            <div class="level-right">
+                                <span class="tag is-success">Confirmed</span>
+                            </div>
+                        </div>
+                        <p class="mt-2"><strong>Patient:</strong> John Doe</p>
+                        <p><strong>Service:</strong> Regular Checkup</p>
+                        <p><strong>Duration:</strong> 30 minutes</p>
+                        <hr style="margin-top: 0.5rem; margin-bottom: 0.2rem; background-color: #cecece;">
+                        <div class="is-flex is-justify-content-space-between is-align-items-center">
+                            <div></div> <!-- Empty div to take up space -->
+                            <button class="button is-info join-button mt-2">Join Meeting</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Second Confirmed Appointment -->
+                <div class="card mb-4">
+                    <div class="card-content">
+                        <div class="level">
+                            <div class="level-left">
+                                <div class="level-item">
+                                    <span class="icon has-text-info">
+                                        <i class="fas fa-clock"></i>
+                                    </span>
+                                    <strong class="ml-2">10:00 AM</strong>
+                                </div>
+                            </div>
+                            <div class="level-right">
+                                <span class="tag is-success">Confirmed</span>
+                            </div>
+                        </div>
+                        <p class="mt-2"><strong>Patient:</strong> Emma Wilson</p>
+                        <p><strong>Service:</strong> Mental Health Consultation</p>
+                        <p><strong>Duration:</strong> 45 minutes</p>
+                        <hr style="margin-top: 0.5rem; margin-bottom: 0.2rem; background-color: #cecece;">
+                        <div class="is-flex is-justify-content-space-between is-align-items-center">
+                            <div></div> <!-- Empty div to take up space -->
+                            <button class="button is-info join-button mt-2">Join Meeting</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Third Confirmed Appointment -->
+                <div class="card mb-4">
+                    <div class="card-content">
+                        <div class="level">
+                            <div class="level-left">
+                                <div class="level-item">
+                                    <span class="icon has-text-info">
+                                        <i class="fas fa-clock"></i>
+                                    </span>
+                                    <strong class="ml-2">11:00 AM</strong>
+                                </div>
+                            </div>
+                            <div class="level-right">
+                                <span class="tag is-success">Confirmed</span>
+                            </div>
+                        </div>
+                        <p class="mt-2"><strong>Patient:</strong> Michael Brown</p>
+                        <p><strong>Service:</strong> Physical Health Consultation</p>
+                        <p><strong>Duration:</strong> 1 hour</p>
+                        <hr style="margin-top: 0.5rem; margin-bottom: 0.2rem; background-color: #cecece;">
+                        <div class="is-flex is-justify-content-space-between is-align-items-center">
+                            <div></div> <!-- Empty div to take up space -->
+                            <button class="button is-info join-button mt-2">Join Meeting</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-content">
+                        <div class="level">
+                            <div class="level-left">
+                                <div class="level-item">
+                                    <span class="icon has-text-info">
+                                        <i class="fas fa-clock"></i>
+                                    </span>
+                                    <strong class="ml-2">1:00 PM</strong>
+                                </div>
+                            </div>
+                            <div class="level-right">
+                                <span class="tag is-success">Confirmed</span>
+                            </div>
+                        </div>
+                        <p class="mt-2"><strong>Patient:</strong> Jane Smith</p>
+                        <p><strong>Service:</strong> Physical Health Consultation</p>
+                        <p><strong>Duration:</strong> 1 hour</p>
+                        <hr style="margin-top: 0.5rem; margin-bottom: 0.2rem; background-color: #cecece;">
+                        <div class="is-flex is-justify-content-space-between is-align-items-center">
+                            <div></div> <!-- Empty div to take up space -->
+                            <button class="button is-info join-button mt-2">Join Meeting</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container meet" style="display: none;">
+            <div class="meet-ui">
+                <div class="columns is-gapless" style="height: 100%;">
+                    <!-- Main video section -->
+                    <div class="column video-section">
+                        <div class="main-video-container">
+                            <div class="video-placeholder primary-video">
+                                <i class="fas fa-user-circle fa-4x"></i>
+                                <p>Patient's Video</p>
+                            </div>
+                            <div class="video-placeholder secondary-video">
+                                <i class="fas fa-user-circle fa-3x"></i>
+                                <p>Doctor's Video</p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Chat Panel (hidden by default) -->
+                    <div class="column is-3 chat-panel" style="display: none;">
+                        <div class="chat-container">
+                            <div class="chat-header">
+                                <h3 class="is-size-5">Chat</h3>
+                                <button class="button is-small is-ghost close-chat">
+                                    <span class="icon">
+                                        <i class="fas fa-times"></i>
+                                    </span>
+                                </button>
+                            </div>
+                            <div class="chat-messages">
+                                <!-- Messages will be added here -->
+                            </div>
+                            <div class="chat-input">
+                                <input type="text" class="input" placeholder="Type a message...">
+                                <button class="button is-info send-message">
+                                    <span class="icon">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Bottom controls -->
+                <div class="meeting-controls">
+                    <div class="buttons are-medium is-centered">
+                        <button class="button is-info">
+                            <span class="icon">
+                                <i class="fas fa-microphone"></i>
+                            </span>
+                            <span>Mute</span>
+                        </button>
+                        
+                        <button class="button is-info">
+                            <span class="icon">
+                                <i class="fas fa-video"></i>
+                            </span>
+                            <span>Stop Video</span>
+                        </button>
+                        
+                        <button class="button is-info">
+                            <span class="icon">
+                                <i class="fas fa-desktop"></i>
+                            </span>
+                            <span>Share Screen</span>
+                        </button>
+        
+                        <button class="button is-info toggle-chat">
+                            <span class="icon">
+                                <i class="fas fa-comments"></i>
+                            </span>
+                            <span>Chat</span>
+                        </button>
+        
+                        <button class="button is-danger complete-appointment-button">
+                            <span class="icon">
+                                <i class="fas fa-check-circle"></i>
+                            </span>
+                            <span>End Call & Complete Appointment</span>
+                        </button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+
+    </section>
+
+    <div class="modal" id="appointmentModal">
+        <div class="modal-background"></div>
+        <div class="modal-card">
+            <header class="modal-card-head">
+                <p class="modal-card-title">Appointment Details</p>
+            </header>
+            <section class="modal-card-body">
+                <div class="content">
+                    <div class="field">
+                        <label class="label">Date & Time</label>
+                        <p id="modalDateTime" class="has-text-weight-semibold"></p>
+                    </div>
+                    <div class="field">
+                        <label class="label">Status</label>
+                        <p id="modalStatus"></p>
+                    </div>
+                    <div class="field">
+                        <label class="label">Patient Information</label>
+                        <p id="modalPatient"></p>
+                        <p id="modalContact" class="is-size-7">Contact: +1 234-567-8900</p>
+                    </div>
+                    <div class="field">
+                        <label class="label">Service</label>
+                        <p id="modalService"></p>
+                    </div>
+                    <div class="field">
+                        <label class="label">Duration</label>
+                        <p id="modalDuration"></p>
+                    </div>
+                    <div class="field">
+                        <label class="label">Notes</label>
+                        <p id="modalNotes" class="is-size-7">No specific allergies or medical conditions reported.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <footer class="modal-card-foot">
+                <button class="button is-success" id="editAppointment">
+                    <span class="icon">
+                        <i class="fas fa-edit"></i>
+                    </span>
+                    <span>Edit</span>
+                </button>
+                <button class="button is-info" id="confirmAppointment" style="display: none;">
+                    <span class="icon">
+                        <i class="fas fa-check"></i>
+                    </span>
+                    <span>Confirm</span>
+                </button>
+                <button class="button is-danger is-light" id="cancelAppointment">
+                    <span class="icon">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <span>Cancel Appointment</span>
+                </button>
+                <button class="button" id="closeModal">Close</button>
+            </footer>
+        </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+    <!-- Custom JS -->
+    <script src="assets/js/dashboard.js"></script>
+    <script src="assets/js/appointments.js"></script>
+</body>
+</html>

@@ -1,0 +1,191 @@
+.join-button:hover {
+    background-color: #3680bd !important;
+}
+
+.meet-ui {
+    padding: 20px;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    color: white;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.video-section {
+    flex-grow: 1;
+}
+
+.main-video-container {
+    position: relative;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.video-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #888;
+}
+
+.primary-video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.secondary-video {
+    position: absolute;
+    width: 200px;
+    height: 150px;
+    background-color: #3a3a3a;
+    border-radius: 8px;
+    right: 20px;
+    top: 20px;
+    border: 2px solid #444;
+}
+
+.meeting-controls {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+}
+
+.meeting-controls .buttons {
+    gap: 10px;
+}
+
+.meeting-controls .button {
+    margin-bottom: 0 !important;
+}
+
+/* Update the existing meet-ui and video section styles */
+.meet-ui {
+    padding: 20px;
+    background-color: #1a1a1a;
+    border-radius: 8px;
+    color: white;
+    height: 85vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.columns.is-gapless {
+    margin: 0;
+    flex-grow: 1;
+}
+
+.video-section {
+    height: 100%;
+}
+
+/* Update chat panel styles */
+.chat-panel {
+    background-color: #2a2a2a;
+    border-left: 1px solid #444;
+    height: 100%;
+    transition: all 0.3s ease;
+}
+
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+}
+
+.chat-header {
+    padding: 15px;
+    border-bottom: 1px solid #444;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-header h3 {
+    color: white;
+    margin: 0;
+}
+
+.chat-messages {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    height: 350px;
+}
+
+.chat-input {
+    padding: 15px;
+    display: flex;
+    gap: 10px;
+    border-top: 1px solid #444;
+}
+
+.chat-input .input {
+    background-color: #3a3a3a;
+    border-color: #444;
+    color: white;
+}
+
+.chat-input .input::placeholder {
+    color: #888;
+}
+
+/* Message bubble styles */
+.message-bubble {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    max-width: 80%;
+}
+
+.message-bubble.sent {
+    background-color: #3273dc;
+    margin-left: auto;
+}
+
+.message-bubble.received {
+    background-color: #3a3a3a;
+}
+
+.message-bubble p {
+    margin-bottom: 5px;
+}
+
+.message-bubble small {
+    font-size: 0.7em;
+    opacity: 0.7;
+}
+
+/* Update main video container */
+.main-video-container {
+    position: relative;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Meeting controls at bottom */
+.meeting-controls {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #2a2a2a;
+    border-radius: 8px;
+}
+
+.meeting-controls .buttons {
+    gap: 10px;
+}
+
+.meeting-controls .button {
+    margin-bottom: 0 !important;
+}

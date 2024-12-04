@@ -6,10 +6,13 @@ $(document).ready(function() {
         // Show loading state
         $('#loadingState').removeClass('is-hidden');
 
-        // After 1 seconds, show chat interface
+        // After x seconds, show chat interface
         setTimeout(function() {
             $('#loadingState').addClass('is-hidden');
             $('#chatInterface').removeClass('is-hidden');
+            addMessage('SYSTEM: Client joins the chat.', 'system', '');
+
+
             // Add welcome message from bot
             addMessage('Hello! How can I help you today?', 'received', 'GetHealthBot');
         
@@ -22,8 +25,8 @@ $(document).ready(function() {
                     removeTypingIndicator();
                     addMessage('Hello, I would like to consult on what exercises can help me relax.', 'received', 'Client');
                 }, 2000);
-            }, 1000);
-        }, 1000);
+            }, 600);
+        }, 800);
 
 
 
@@ -43,6 +46,10 @@ $(document).ready(function() {
             // Add sent message with Dr. Alex name
             addMessage(message, 'sent', 'Dr. Alex');
             $('#messageInput').val('');
+
+            setTimeout(function() {
+                addMessage('SYSTEM: Client left the chat, please complete the chat session.', 'system', '');
+            }, 500);
 
         }
     }
