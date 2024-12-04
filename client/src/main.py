@@ -30,7 +30,13 @@ if __name__ == '__main__':
     update_global_constants()
     # create Qt window
     window = MainWindow()
-    window.showMaximized()
+    window.show()  # ensure the window's size is set
+    screen_geometry = app.screens()[0].geometry()
+    window_geometry = window.frameGeometry()
+    # calculate the center position
+    center_point = screen_geometry.center()
+    window_geometry.moveCenter(center_point)
+    window.move(window_geometry.topLeft())
     # loading should be done before closing the splash screen
     if getattr(sys, 'frozen', False): pyi_splash.close()
     # run the main Qt loop
