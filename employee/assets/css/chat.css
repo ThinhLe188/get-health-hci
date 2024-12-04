@@ -181,19 +181,3 @@
     padding: 15px;
     overflow-y: auto;
 }
-
-.chat-input {
-    padding: 15px;
-    display: flex;
-    gap: 10px;
-}
-
-.chat-input .input {
-    background-color: #3a3a3a;
-    border-color: #444;
-    color: white;
-}
-
-.chat-input .input::placeholder {
-    color: #888;
-}
