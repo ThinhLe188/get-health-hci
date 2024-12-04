@@ -5,27 +5,55 @@ STYLE_SHEET = """
         color: rgb(2, 102, 0);
     }
 
-    QLabel#label_card {
+    QLabel#label_prompt {
         font-weight: bold;
+        font-size: 16px;
+    }
+
+    QLabel#label_sidebar_button {
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    QLabel#label_username {
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    QLabel#label_button {
         font-size: 14px;
+        font-weight: bold;
+        color: rgb(0, 123, 255);
     }
 
-    QWidget#widget_login {
-        background-color: rgb(255, 255, 128);
+    QLabel#label_button:hover {
+        font-size: 14px;
+        font-weight: bold;
+        color: rgb(0, 99, 204);
     }
 
-    QWidget#widget_nav {
+    QWidget#widget_component {
         background-color: rgb(255, 255, 102);
     }
 
-    QWidget#widget_card:hover {
+    QWidget#widget_modal {
+        background-color: rgb(255, 255, 102);
+        border-radius: 15px;
+    }
+
+    QWidget#widget_button:hover {
         background-color: rgb(230, 230, 0);
         border-top: 2px solid rgb(2, 102, 0);
     }
 
-    QWidget#widget_card_pressed {
+    QWidget#widget_button_pressed {
         background-color: rgb(230, 230, 0);
         border-top: 2px solid rgb(2, 102, 0);
+    }
+
+    QWidget#widget_sidebar_button:hover {
+        background-color: rgb(230, 230, 0);
+        border-left: 2px solid rgb(2, 102, 0);
     }
      
     QLineEdit#input_prompt {
@@ -51,25 +79,5 @@ STYLE_SHEET = """
 
     QPushButton#button_submit:hover {
         background-color: rgb(2, 128, 0);
-    }
-
-    QLabel#label_button {
-        font-weight: bold;
-        color: rgb(0, 123, 255);
-    }
-
-    QLabel#label_button:hover {
-        font-weight: bold;
-        color: rgb(0, 99, 204);
-    }
-
-    QScrollArea#n_page {
-        background-color: rgb(255, 0, 0);
-    }
-    QScrollArea#m_page {
-        background-color: rgb(0, 255, 0);
-    }
-    QScrollArea#h_page {
-        background-color: rgb(0, 0, 255);
     }
 """

@@ -1,17 +1,13 @@
-import common.constants as const
-from PyQt5.QtCore import Qt, pyqtSlot
-from PyQt5.QtWidgets import (QHBoxLayout, QLabel, QMessageBox, QScrollArea,
-                             QVBoxLayout, QWidget)
+from pages.content_widget import *
 
 
-class NewsPage(QWidget):
-    def __init__(self):
+class NewsPage(ContentWidget):
+    def __init__(self, parent):
         """Initialize health news page
         """
-        super().__init__()
-        self.setStyleSheet('background-color: rgb(255, 0, 0);')
-        self.setFixedHeight(1864)
-        layout = QVBoxLayout()
-        layout.setContentsMargins(0, 0, 0, 0)
-        layout.setSpacing(0)
-        self.setLayout(layout)
+        super().__init__(parent)
+        self.layout().addStretch()
+
+
+    def display_page(self):
+        self.parent.label_title.setText(const.APP_PAGE_NEWS)
