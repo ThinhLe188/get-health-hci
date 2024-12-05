@@ -8,6 +8,8 @@
 
 ## Get Health Mobile Interface Prototype
 
+`https://github.com/ThinhLe188/get-health-hci/releases/tag/Submit`
+
 ## Demo Display
 
 -   Login/Logout
