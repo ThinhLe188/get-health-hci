@@ -75,6 +75,10 @@ STYLE_SHEET = """
         background-color: rgb(230, 230, 0);
         border-bottom: 2px solid rgb(2, 102, 0);
     }
+
+    QWidget#widget_region_list {
+        border: 1px solid rgb(211, 211, 211);
+    }
      
     QLineEdit#input_prompt {
         padding: 4px;
@@ -126,7 +130,7 @@ STYLE_SHEET = """
 
     QListWidget {
         min-height: 820px;
-        background-color: rgb(230, 255, 230);
+        background-color: rgb(255, 255, 230);
     }
 
     QListWidget::item {
@@ -139,6 +143,6 @@ STYLE_SHEET = """
     }
 
     QStackedWidget {
-        background-color: rgb(230, 255, 230);
+        background-color: rgb(255, 255, 230);
     }
 """

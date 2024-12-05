@@ -12,6 +12,7 @@ class CardNewsWidget(QWidget):
     def __init__(self, curr_dir: str, img: str, title: str, author: str, location: str, publish: str, content: str):
         super().__init__()
         self._data = (img, title, author, location, publish, content)
+        self.location_str = location.lower()
         layout = QVBoxLayout()
         layout.setSpacing(0)
         self.setLayout(layout)

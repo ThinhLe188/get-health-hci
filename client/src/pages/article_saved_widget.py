@@ -24,12 +24,13 @@ class SavedArticlesPage(ContentWidget):
         self._widget_content.addTab(self.list_jours, 'Journals')
         # connect signals
         self._widget_content.currentChanged.connect(self.update_layout)
+        self.list_news.itemDoubleClicked.connect(self._view_news_content)
+        self.list_jours.itemDoubleClicked.connect(self._view_news_content)
 
 
     def display_page(self):
         super().display_page()
-        self.parent.button_search.show()
-        self.parent.label_title.setText(const.APP_PAGE_NEWS)
+        self.parent.label_title.setText(const.APP_PAGE_SAVED)
 
 
     def update_layout(self, index: int):
