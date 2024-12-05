@@ -8,9 +8,10 @@ from PyQt5.QtWidgets import (QFrame, QHBoxLayout, QLabel, QListWidgetItem,
                              QVBoxLayout, QWidget)
 
 
-class CardWidget(QWidget):
+class CardNewsWidget(QWidget):
     def __init__(self, curr_dir: str, img: str, title: str, author: str, location: str, publish: str, content: str):
         super().__init__()
+        self._data = (img, title, author, location, publish, content)
         layout = QVBoxLayout()
         layout.setSpacing(0)
         self.setLayout(layout)
@@ -36,3 +37,6 @@ class CardWidget(QWidget):
         self._layout_footer.addWidget(QLabel(location, objectName='label_news_footer'))
         self._layout_footer.addStretch()
 
+
+    def get_data(self):
+        return self._data

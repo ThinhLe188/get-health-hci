@@ -1,13 +1,12 @@
 import common.constants as const
-from components.card.card_widget import *
+from components.card.card_news_widget import *
 from PyQt5.QtCore import pyqtSlot
 
 
-class NewsCardWidget(CardWidget):
+class NewsCardWidget(CardNewsWidget):
     def __init__(self, central_widget, curr_dir: str, img: str, title: str, author: str, location: str, publish: str, content: str):
         super().__init__(curr_dir, img, title, author, location, publish, content)
         self.central_widget = central_widget
-        self._data = (img, title, author, location, publish, content)
         self.pinned_item = None
         self._label_bookmark = ButtonLabel(const.APP_BOOKMARK, const.APP_BOOKMARK_FILL)
         self._label_bookmark.clicked.connect(self._handle_bookmark)

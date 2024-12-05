@@ -27,6 +27,7 @@ class SavedArticlesPage(ContentWidget):
 
 
     def display_page(self):
+        super().display_page()
         self.parent.button_search.show()
         self.parent.label_title.setText(const.APP_PAGE_NEWS)
 

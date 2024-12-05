@@ -135,6 +135,7 @@ class CentralWidget(QWidget):
         self._widget_stack = QStackedWidget()
         # create content sections
         self._widget_news = NewsPage(self)
+        self._widget_news.display_page()
         self._widget_news_local = NewsLocalPage(self)
         self._widget_article_saved = SavedArticlesPage(self)
         self._widget_mental = MentalPage(self)

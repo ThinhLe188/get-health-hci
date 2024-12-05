@@ -7,6 +7,7 @@ class NewsLocalPage(ContentWidget):
         """
         super().__init__(parent)
         self._widget_content = QTabWidget(self._widget_scroll)
+        self._widget_content.tabBar().setMovable(True)
         self._widget_content.setFixedSize(430, 820)
         self._widget_content.setContentsMargins(0, 0, 0, 0)
         self.list_news_local = QListWidget()
@@ -18,5 +19,6 @@ class NewsLocalPage(ContentWidget):
 
 
     def display_page(self):
+        super().display_page()
         self.parent.label_title.setText(const.APP_PAGE_LOCAL_NEWS)
         self.parent.button_filter.show()

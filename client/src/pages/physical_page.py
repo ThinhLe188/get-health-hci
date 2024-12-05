@@ -16,4 +16,5 @@ class PhysicalPage(ContentWidget):
 
 
     def display_page(self):
+        super().display_page()
         self.parent.label_title.setText(const.APP_PAGE_PHYSICAL)

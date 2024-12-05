@@ -137,4 +137,8 @@ STYLE_SHEET = """
     QListWidget::item:hover {
         background-color: rgb(230, 230, 0);
     }
+
+    QStackedWidget {
+        background-color: rgb(230, 255, 230);
+    }
 """

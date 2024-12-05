@@ -23,11 +23,17 @@ class NewsPage(ContentWidget):
         self._widget_content.addTab(self.list_news_all, 'All')
         self._widget_content.addTab(self.list_news_top, 'Top News')
         self._load_news()
+        # init news content widget
+        self._widget_news_content = NewsContentWidget()
+        self.addWidget(self._widget_news_content)
         # connect signals
         self._widget_content.currentChanged.connect(self.update_layout)
+        self.list_news_all.itemClicked.connect(self._view_news_content)
+        self.list_news_top.itemClicked.connect(self._view_news_content)
 
 
     def display_page(self):
+        super().display_page()
         self.parent.button_search.show()
         self.parent.label_title.setText(const.APP_PAGE_NEWS)
 
@@ -62,3 +68,9 @@ class NewsPage(ContentWidget):
 
             # repaint the viewport
             current_list_widget.viewport().update()
+
+
+    def _view_news_content(self, item: QListWidgetItem):
+        self._widget_news_content.display_content(*item.listWidget().itemWidget(item).get_data())
+        self.parent.button_back.show()
+        self.setCurrentIndex(1)
