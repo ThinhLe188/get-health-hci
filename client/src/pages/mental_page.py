@@ -1,18 +1,19 @@
-import common.constants as const
-from PyQt5.QtCore import Qt, pyqtSlot
-from PyQt5.QtWidgets import (QHBoxLayout, QLabel, QMessageBox, QScrollArea,
-                             QVBoxLayout, QWidget, QPushButton)
+from pages.content_widget import *
 
 
-class MentalPage(QWidget):
-    def __init__(self):
+class MentalPage(ContentWidget):
+    def __init__(self, parent):
         """Initialize mental health page
         """
-        super().__init__()
-        self.setStyleSheet('background-color: rgb(0, 255, 0);')
-        self.setFixedHeight(1864)
-        layout = QVBoxLayout()
-        layout.setContentsMargins(0, 0, 0, 0)
-        layout.setSpacing(0)
-        self.setLayout(layout)
-        layout.addStretch()
+        super().__init__(parent)
+        layout = self.layout()
+        self._widget_content = QWidget()
+        self._widget_content.setFixedHeight(1864)
+        self._layout_content = QVBoxLayout()
+        self._widget_content.setLayout(self._layout_content)
+        self._widget_scroll.setWidget(self._widget_content)
+        layout.addWidget(self._widget_scroll)
+
+
+    def display_page(self):
+        self.parent.label_title.setText(const.APP_PAGE_MENTAL)

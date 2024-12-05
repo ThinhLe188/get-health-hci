@@ -5,27 +5,75 @@ STYLE_SHEET = """
         color: rgb(2, 102, 0);
     }
 
-    QLabel#label_card {
+    QLabel#label_prompt {
         font-weight: bold;
+        font-size: 16px;
+    }
+
+    QLabel#label_sidebar_button {
+        font-weight: bold;
+        font-size: 16px;
+    }
+
+    QLabel#label_username {
+        font-weight: bold;
+        font-size: 18px;
+    }
+
+    QLabel#label_button {
         font-size: 14px;
+        font-weight: bold;
+        color: rgb(0, 123, 255);
     }
 
-    QWidget#widget_login {
-        background-color: rgb(255, 255, 128);
+    QLabel#label_button:hover {
+        font-size: 14px;
+        font-weight: bold;
+        color: rgb(0, 99, 204);
     }
 
-    QWidget#widget_nav {
+    QLabel#label_icon_button {
+        font-weight: bold;
+        text-align: center;
+    }
+
+    QLabel#label_news_title {
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    QLabel#label_news_footer {
+        font-weight: bold;
+        color: grey;
+    }
+
+    QWidget#widget_component {
         background-color: rgb(255, 255, 102);
     }
 
-    QWidget#widget_card:hover {
+    QWidget#widget_modal {
+        background-color: rgb(255, 255, 102);
+        border-radius: 15px;
+    }
+
+    QWidget#widget_button:hover {
         background-color: rgb(230, 230, 0);
         border-top: 2px solid rgb(2, 102, 0);
     }
 
-    QWidget#widget_card_pressed {
+    QWidget#widget_button_pressed {
         background-color: rgb(230, 230, 0);
         border-top: 2px solid rgb(2, 102, 0);
+    }
+
+    QWidget#widget_sidebar_button:hover {
+        background-color: rgb(230, 230, 0);
+        border-left: 2px solid rgb(2, 102, 0);
+    }
+
+    QWidget#widget_header_button:hover {
+        background-color: rgb(230, 230, 0);
+        border-bottom: 2px solid rgb(2, 102, 0);
     }
      
     QLineEdit#input_prompt {
@@ -53,23 +101,40 @@ STYLE_SHEET = """
         background-color: rgb(2, 128, 0);
     }
 
-    QLabel#label_button {
-        font-weight: bold;
-        color: rgb(0, 123, 255);
+    QTabWidget::pane {
+        background-color: white;
     }
 
-    QLabel#label_button:hover {
+    QTabBar::tab {
+        padding: 10px;
+        min-width: 55px;
+        margin: 0;
+        border: none;
         font-weight: bold;
-        color: rgb(0, 99, 204);
+        background-color: rgb(230, 230, 0);
     }
 
-    QScrollArea#n_page {
-        background-color: rgb(255, 0, 0);
+    QTabBar::tab:selected {
+        color: rgb(2, 102, 0);
+        border-bottom: 2px solid rgb(2, 102, 0);
     }
-    QScrollArea#m_page {
-        background-color: rgb(0, 255, 0);
+
+    QScrollArea {
+        background-color: rgb(230, 230, 0);
+        border: none;
     }
-    QScrollArea#h_page {
-        background-color: rgb(0, 0, 255);
+
+    QListWidget {
+        min-height: 820px;
+        background-color: rgb(230, 255, 230);
+    }
+
+    QListWidget::item {
+        background-color: rgb(255, 255, 102);
+        border-radius: 5px;
+    }
+
+    QListWidget::item:hover {
+        background-color: rgb(230, 230, 0);
     }
 """
