@@ -199,7 +199,7 @@ $(document).ready(function() {
         const clickedCard = $(this);
 
         // Get appointment details from the card
-        const time = clickedCard.find('.level-item strong').text();
+        let time = clickedCard.find('.level-item strong').text();
         const status = clickedCard.find('.tag').text();
         const patient = clickedCard.find('p:contains("Patient:")').text().replace('Patient:', '').trim();
         const service = clickedCard.find('p:contains("Service:")').text().replace('Service:', '').trim();
@@ -275,6 +275,10 @@ $(document).ready(function() {
                         }
 
                         updateAppointmentTime();
+
+                        const dateText = status === 'Pending' ? 'Dec 11, 2024' : 'Dec 03, 2024';
+                        time = clickedCard.find('.level-item strong').text();
+                        $('#modalDateTime').text(`${dateText} | ${time}`);
                     });
             }
     
