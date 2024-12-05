@@ -10,12 +10,13 @@
 
 ## Demo Display  
 ### Authentication
-https://github.com/user-attachments/assets/dd3378b3-17ac-4e28-9fc8-da6a265e2fd6  
+https://github.com/user-attachments/assets/6c6cffc7-3c22-4ce8-9a0c-abac99fc02a3  
 
 ### Dashboard  
+https://github.com/user-attachments/assets/23e5ad9a-8a64-496f-a743-51185faa0c64  
 
 ### Daily Chat  
-https://github.com/user-attachments/assets/75727426-4374-413f-b533-b4fc718add95  
+https://github.com/user-attachments/assets/d27ff564-edf3-4740-8a8a-12fffad819df  
 
 ### Appointments  
-https://github.com/user-attachments/assets/4bb9bf98-a2f7-4cee-9dc1-0dbce37123d9
+https://github.com/user-attachments/assets/5884a4cf-57e2-44e4-9799-2f800d4fd05f  
