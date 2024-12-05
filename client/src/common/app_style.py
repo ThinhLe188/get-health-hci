@@ -105,6 +105,19 @@ STYLE_SHEET = """
         background-color: rgb(2, 128, 0);
     }
 
+    QPushButton#button_chatbot {
+        background-color: rgb(0, 123, 255);
+        border-radius: 5px;
+        padding: 10px;
+        font-weight: bold;
+        font-size: 16px;
+        color: white;
+    }
+
+    QPushButton#button_chatbot:hover {
+        background-color: rgb(0, 99, 204);
+    }
+
     QTabWidget::pane {
         background-color: white;
     }
@@ -144,5 +157,10 @@ STYLE_SHEET = """
 
     QStackedWidget {
         background-color: rgb(255, 255, 230);
+    }
+
+    QScrollArea#scroll_content {
+        background-color: rgb(255, 255, 230);
+        border: none;
     }
 """

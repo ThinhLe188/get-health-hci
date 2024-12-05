@@ -98,8 +98,8 @@ class RegionFilterWidget(QWidget):
         delete_button = QPushButton()
         delete_button.setFlat(True)
         delete_button.setFixedSize(25, 25)
-        delete_button.setIcon(QIcon(const.APP_REMOVE));
-        delete_button.setIconSize(QSize(25, 25));
+        delete_button.setIcon(QIcon(const.APP_REMOVE))
+        delete_button.setIconSize(QSize(25, 25))
         delete_button.clicked.connect(lambda: self.delete_region_item(list_item))
         layout.addWidget(delete_button, Qt.AlignmentFlag.AlignRight)
 

@@ -5,9 +5,10 @@ from components.card.news_pinned_widget import NewsPinnedCardWidget
 from components.card.news_widget import NewsCardWidget
 from components.modal.news_content_widget import NewsContentWidget
 from PyQt5.QtCore import QSize, Qt, pyqtSlot
-from PyQt5.QtWidgets import (QListWidget, QListWidgetItem, QScrollArea,
-                             QSizePolicy, QStackedWidget, QTabWidget,
-                             QVBoxLayout, QWidget)
+from PyQt5.QtGui import QIcon
+from PyQt5.QtWidgets import (QHBoxLayout, QLabel, QListWidget, QListWidgetItem,
+                             QPushButton, QScrollArea, QSizePolicy,
+                             QStackedWidget, QTabWidget, QVBoxLayout, QWidget)
 
 
 class ContentWidget(QStackedWidget):

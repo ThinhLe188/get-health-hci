@@ -14,13 +14,16 @@ APP_BACK     = 'assets/back.png'
 APP_BOOKMARK = 'assets/bookmark.png'
 APP_BOOKMARK_FILL = 'assets/bookmark-fill.png'
 APP_REMOVE   = 'assets/remove.png'
+APP_CHATBOT  = 'assets/chatbot.png'
+APP_MALE     = 'assets/male.png'
+APP_FEMALE   = 'assets/female.png'
 
 APP_PAGE_NEWS           = 'News'
 APP_PAGE_LOCAL_NEWS     = 'Local News'
 APP_PAGE_REGION_FILTER  = 'Manage My Regions'
 APP_PAGE_SAVED          = 'Saved'
-APP_PAGE_MENTAL         = 'Physical Health'
-APP_PAGE_PHYSICAL       = 'Mental Health'
+APP_PAGE_PHYSICAL       = 'Physical Health'
+APP_PAGE_MENTAL         = 'Mental Health'
 APP_PAGE_NEWS_IDX       = 0
 APP_PAGE_NEWS_LOCAL_IDX = 1
 APP_PAGE_NEWS_SAVED_IDX = 2
@@ -56,4 +59,22 @@ NEWS_TOP = [
     ('assets/news8.jpg', "How the pandemic changed Japan's health care system", "Tim Hortons", 'Japan', "25 minutes ago", TEXT),
     ('assets/news9.jpg', "University of Waterloo commits $1.2M to hire more counsellors", "Tom Hank", 'Waterloo', "50 minutes ago", TEXT),
     ('assets/news10.jpg', "Overworked, underpaid and quitting: Europe's health workers slam 'empty' post-pandemic promises", "Taylor Swift", 'Europe', "An hour ago", TEXT),
+]
+
+MENTAL_DOC = [
+    ("male", "Dr. Alan Brown", "Clinical Psychology", "8 years", "Health Hub", "Online only", "1.5 km away"),
+    ("female", "Dr. Emily White", "Child Psychiatry", "12 years", "Family Clinic", "Online & In-person", "3 km away"),
+    ("male", "Dr. John Doe", "Psychiatry", "15 years", "Wellness Clinic", "Online & In-person", "2 km away"),
+    ("female", "Dr. Olivia Black", "Cognitive Therapy", "5 years", "Harmony Clinic", "Online only", "4.2 km away"),
+    ("female", "Dr. Jane Smith", "Therapy", "10 years", "Care Center", "In-person only", "5 km away"),
+    ("male", "Dr. Mark Green", "Behavioral Therapy", "20 years", "Mental Wellness Center", "In-person only", "7 km away"),
+]
+
+PHYSICAL_DOC = [
+    ("female", "Dr. Laura Wilson", "Nutritionist", "15 years", "NutriHealth Clinic", "Online & In-person", "1.2 km away"),
+    ("male", "Dr. Ethan Wright", "Sports Medicine", "8 years", "Athlete's Clinic", "Online only", "2 km away"),
+    ("male", "Dr. Michael Carter", "Dietitian", "10 years", "Health and Wellness Clinic", "Online & In-person", "3 km away"),
+    ("female", "Dr. Olivia Brown", "Occupational Therapy", "7 years", "Active Wellness Clinic", "Online only", "4.3 km away"),
+    ("female", "Dr. Sarah Connor", "Physiotherapy", "12 years", "BodyCare Center", "In-person only", "5 km away"),
+    ("male", "Dr. Benjamin Scott", "Rehabilitation Specialist", "20 years", "RehabCare Center", "In-person only", "6.5 km away"),
 ]

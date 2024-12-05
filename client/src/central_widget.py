@@ -220,6 +220,23 @@ class CentralWidget(QWidget):
 
 
     @pyqtSlot()
+    def bookmark_journals(self, news_item: NewsCardWidget, news: tuple):
+        list_saved_news = self._widget_article_saved.list_jours
+        item = QListWidgetItem(list_saved_news)
+        card_news = NewsPinnedCardWidget(self, news_item, self.curr_dir, *news)
+        item.setSizeHint(QSize(400, 340))
+        list_saved_news.setItemWidget(item, card_news)
+        news_item.set_bookmark(item)
+
+
+    @pyqtSlot()
+    def remove_bookmark_journals(self, item: QListWidgetItem):
+        list_saved_news = self._widget_article_saved.list_jours
+        list_saved_news.removeItemWidget(item)
+        list_saved_news.takeItem(list_saved_news.row(item))
+
+
+    @pyqtSlot()
     def exit_app(self):
         self.parent().close()
 

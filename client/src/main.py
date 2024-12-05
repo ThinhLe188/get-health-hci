@@ -28,7 +28,10 @@ def update_global_constants():
     const.APP_BACK     = os.path.join(curr_dir, const.APP_BACK)
     const.APP_BOOKMARK = os.path.join(curr_dir, const.APP_BOOKMARK)
     const.APP_BOOKMARK_FILL = os.path.join(curr_dir, const.APP_BOOKMARK_FILL)
-    const.APP_REMOVE = os.path.join(curr_dir, const.APP_REMOVE)
+    const.APP_REMOVE   = os.path.join(curr_dir, const.APP_REMOVE)
+    const.APP_CHATBOT  = os.path.join(curr_dir, const.APP_CHATBOT)
+    const.APP_MALE     = os.path.join(curr_dir, const.APP_MALE)
+    const.APP_FEMALE   = os.path.join(curr_dir, const.APP_FEMALE)
 
 
 if __name__ == '__main__':
